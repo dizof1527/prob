@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1a36c6">
-<meta name="app-version" content="2026-11-21.2">
+<meta name="theme-color" content="#f2f6f6">
+<meta name="app-version" content="2026-11-21.3">
 <meta name="schedule-version" content="2026-10-27">
 <meta name="description" content="Расписание БашГАУ: все группы, подгруппы, актуальные недели и офлайн-доступ.">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -699,259 +699,237 @@ html[data-motion=off] .card,html[data-motion=off] .detail,html[data-motion=off] 
 @media(prefers-reduced-motion:reduce){.ready-choice{transition:none}.ready-choice:hover{transform:none}}
 [data-motion=off] .ready-choice{transition:none;transform:none}
 
-/* Printed timetable */
-.notice-app{display:block;max-width:none;--display-font:Georgia,"Times New Roman",serif;--number-font:"Consolas","Courier New",monospace}
-.notice-app .workspace,.notice-app .site-bar-inner{width:min(100%,1420px);max-width:none;margin-inline:auto;padding-inline:clamp(16px,4.3vw,64px)}
-.notice-app .workspace{padding-block:0 24px}
-.notice-app .site-bar{position:sticky;top:0;z-index:3;background:var(--bg);border-bottom:1px solid var(--t)}
-.site-bar-inner{display:flex;align-items:center;gap:16px;min-height:57px}
-.site-bar .brand{padding:0;gap:8px;flex:none}
-.site-bar .logo{width:29px;height:29px;border-radius:0}
-.site-bar .brand>div:last-child{display:block}
-.site-bar .brand-wordmark{font-size:17px;letter-spacing:-.035em}
-.site-actions{display:flex;gap:0;flex:none;margin-left:auto}
-.site-actions .icon{min-width:40px;width:40px;height:44px;border:0;border-radius:0;background:transparent;color:var(--t)}
+/* Mobile-first timetable */
+.focus-app{display:block;max-width:none}
+.focus-app .workspace,.focus-app .site-bar-inner{width:min(100%,1000px);max-width:none;margin-inline:auto;padding-inline:clamp(14px,3vw,36px)}
+.focus-app .workspace{padding-block:14px 24px}
+.focus-app .site-bar{position:sticky;top:0;z-index:3;background:var(--s);border-bottom:1px solid var(--l)}
+.site-bar-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:9px 18px;align-items:center;min-height:67px;padding-block:9px}
+.app-heading{display:flex;align-items:center;gap:9px;min-width:0}
+.app-heading .logo{width:33px;height:33px;border-radius:9px}
+.app-heading h1{margin:0;font-size:calc(25px * var(--text-scale));font-weight:750;line-height:1.15;letter-spacing:-.05em;overflow-wrap:anywhere}
+.site-context{display:flex;align-items:center;justify-content:flex-end;gap:5px 14px;min-width:0}
+.site-context .group-switch{
+ max-width:100%;min-width:0;min-height:44px;gap:6px;padding:4px 7px;border:0;border-radius:10px;
+ background:var(--s2);color:var(--t);
+}
+.site-context .group-switch:hover{background:color-mix(in srgb,var(--a) 13%,var(--s2))}
+.site-context .group-monogram{width:25px;height:25px;border:0;background:none;color:var(--a)}
+.site-context .group-monogram .ui-icon{width:17px;height:17px;color:inherit}
+.site-context .group-copy strong{font-size:calc(13px * var(--text-scale));line-height:1.2}
+.site-context .group-copy small{font-size:calc(10px * var(--text-scale));line-height:1.2}
+.site-context .group-switch .chevron{width:12px;margin-left:auto;flex:none}
+.site-context .group-switch .chevron .ui-icon{width:12px;height:12px}
+.site-context .freshness-shortcut{
+ display:flex;flex:0 1 auto;min-width:0;min-height:44px;max-width:100%;gap:5px;padding:1px 0;border:0;border-radius:6px;background:none;color:var(--m);
+}
+.site-context .freshness-shortcut strong{font-size:calc(11px * var(--text-scale));font-weight:650;line-height:1.3;text-align:left}
+.site-context .freshness-shortcut small{display:none}
+.site-context .freshness-shortcut>.ui-icon{width:11px;height:11px;margin:0}
+.site-context .freshness-shortcut:hover strong{text-decoration:underline;text-underline-offset:3px}
+.site-context .freshness-dot{width:6px;height:6px}
+.site-actions{display:flex;align-items:center;gap:2px}
+.site-actions .icon{min-width:41px;width:41px;height:44px;border:0;border-radius:11px;background:none;color:var(--t)}
 .site-actions .icon:hover{background:var(--s2)}
-.site-actions .ui-icon{width:19px;height:19px;color:inherit}
-.site-bar .freshness-shortcut{
- display:flex;min-height:44px;max-width:100%;align-items:center;gap:7px;padding:3px 3px;
- margin-left:auto;border:0;border-radius:0;background:none;color:var(--t);
-}
-.site-bar .freshness-shortcut>span:nth-child(2){display:block;min-width:0}
-.site-bar .freshness-shortcut strong{font-size:calc(13px * var(--text-scale));font-weight:650;line-height:1.3}
-.site-bar .freshness-shortcut small{display:none}
-.site-bar .freshness-shortcut>.ui-icon{width:13px;height:13px}
-.site-bar .freshness-shortcut:hover strong{text-decoration:underline;text-underline-offset:3px}
-.site-bar .freshness-dot{width:7px;height:7px;align-self:center}
-
-.masthead{
- display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:0 0 0;
- padding:27px clamp(18px,4.2vw,60px) 30px;background:#1a36c6;color:#fff8e7;
-}
-.masthead-title{min-width:0}
-.masthead h1{
- margin:0;font-family:var(--display-font);font-size:calc(clamp(42px,8.9vw,130px) * var(--text-scale));
- line-height:.91;letter-spacing:-.062em;font-weight:400;overflow-wrap:anywhere;
-}
-.masthead .eyebrow{margin:0 0 10px;font-size:calc(11px * var(--text-scale));letter-spacing:.12em;color:inherit}
-.masthead .eyebrow::before{content:none}
-.masthead .group-switch{
- background:#f9db62;color:#1d2240;border:0;border-radius:0;min-height:53px;max-width:100%;
- padding:6px 8px 6px 7px;gap:8px;align-self:flex-end;
-}
-.masthead .group-switch:hover{background:#ffe783}
-.masthead .group-switch:focus-visible{outline-color:#fff8e7}
-.masthead .group-monogram{width:35px;height:35px;background:none;color:inherit;border:0;border-radius:0}
-.masthead .group-copy strong{font-size:calc(15px * var(--text-scale));line-height:1.2;color:inherit}
-.masthead .group-copy small{font-size:calc(11px * var(--text-scale));color:#282c49}
-.masthead .group-switch .chevron,.masthead .group-switch .ui-icon{color:inherit}
-.masthead .group-switch .chevron{margin-left:auto;flex:none}
-.notice-app .quick-groups{margin:0;padding:6px 0}
-.notice-app .quick-group{min-height:44px;border-radius:0}
-.notice-app .update-banner{margin:2px 0 0;border-radius:0}
-
-.notice-app .current-panel{
- display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;margin:0;padding:7px 0;
- border:0;border-bottom:1px solid var(--l);border-radius:0;background:none;min-width:0;
-}
-.notice-app .current-panel::before{display:none}
-.notice-app .current-panel .status{margin:0;background:none;flex:1 1 490px}
-.notice-app .current-panel .status-text{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 10px;text-align:left}
-.notice-app .status b{padding:3px 6px;background:#f9db62;color:#1b1e2a;font-size:calc(10px * var(--text-scale));font-weight:750;letter-spacing:.055em;text-transform:uppercase}
-.notice-app .status.live b::before{flex:none}
-.status-subject{font-size:calc(15px * var(--text-scale));line-height:1.25;font-weight:700;overflow-wrap:anywhere}
-.status-location{display:flex;flex-wrap:wrap;gap:3px 9px}
-.status-location:has(>div[hidden]+div[hidden]){display:none}
-.notice-app .status-meta{display:flex;align-items:center;gap:4px;color:var(--m);font-size:calc(11px * var(--text-scale));overflow-wrap:anywhere}
-.notice-app .status-meta .ui-icon{width:12px;height:12px;color:inherit}
-.notice-app .countdown-row{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 6px;margin:0}
-.notice-app .countdown-row strong,.notice-app .status-clock{font:700 calc(14px * var(--text-scale))/1.15 var(--number-font);margin:0}
-.notice-app .countdown-row span,.notice-app .ufa-time{font-size:calc(10px * var(--text-scale));color:var(--m);margin:0}
-.notice-app .status-progress{align-self:center;width:min(10ch,16%);height:3px;margin:0}
-.notice-app .status-progress i{background:var(--indicator-color)}
-.notice-app .current-panel .status-action{
- display:inline-flex;justify-content:flex-start;align-items:center;gap:5px;width:auto;min-height:44px;padding:2px 0;margin:0;
- border:0;border-radius:0;color:var(--t);background:none;font-size:calc(12px * var(--text-scale));
-}
-.notice-app .status-action:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
-.notice-app .status-action .ui-icon{width:14px;height:14px;color:inherit}
+.site-actions .ui-icon{width:18px;height:18px;color:inherit}
+.focus-app .quick-groups{margin:0 0 8px;padding:0 0 4px}
+.focus-app .quick-group{min-height:44px}
+.focus-app .update-banner{margin:0 0 9px}
 
 .planner-board{min-width:0}
-.board-controls{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;padding:6px 0 4px}
-.board-controls .weekbar{display:flex;width:auto;min-width:0;max-width:100%;border:0;border-radius:0;margin:0;padding:0;gap:1px;background:none;color:var(--t)}
-.board-controls .weekbar button{min-height:44px;min-width:36px;border-radius:0}
+.board-controls{display:flex;align-items:center;gap:4px 11px;flex-wrap:wrap;margin-bottom:7px}
+.board-controls .weekbar{
+ width:auto;min-width:0;max-width:100%;display:flex;flex:0 1 auto;margin:0;padding:0;gap:0;
+ background:var(--s);border:1px solid var(--l);border-radius:11px;color:var(--t);
+}
+.board-controls .weekbar button{min-height:42px;min-width:42px;border-radius:9px}
 .board-controls .weekbar button:hover{background:var(--s2)}
-.board-controls .weekbar .week-title{display:grid;gap:1px;padding:2px 5px;font-size:calc(15px * var(--text-scale));line-height:1.15;text-align:left}
-.board-controls .week-title .week-type{font-size:calc(11px * var(--text-scale));color:var(--m);white-space:normal}
+.board-controls .weekbar .week-title{display:grid;gap:2px;padding:4px 5px;font-size:calc(13px * var(--text-scale));line-height:1.13}
+.board-controls .week-title .week-type{font-size:calc(11px * var(--text-scale));color:var(--m)}
 .board-controls .weekbar .ui-icon{color:var(--t)}
-.board-controls .quick-today{display:flex;min-height:44px;border:0;border-radius:0;background:none;padding:4px 6px;font-size:calc(12px * var(--text-scale))}
+.board-controls .quick-today{display:flex;min-height:44px;padding:3px 6px;border:0;background:none;color:var(--a);font-size:calc(12px * var(--text-scale))}
 .board-controls .quick-today:hover{background:var(--s2)}
-.view-toggle{display:flex;gap:4px;margin-left:auto;border-bottom:1px solid var(--l)}
-.view-toggle button{min-height:44px;padding:4px 11px;border:0;border-bottom:3px solid transparent;background:none;color:var(--m);font-size:calc(13px * var(--text-scale))}
-.view-toggle button[aria-pressed=true]{border-bottom-color:var(--a);color:var(--t)}
-.week-legend{display:flex;gap:5px 11px;align-items:center;flex-wrap:wrap;font-size:calc(11px * var(--text-scale));color:var(--m)}
-.week-legend span{display:flex;gap:5px;align-items:center}
-.week-legend span::before{content:"";width:8px;height:2px;background:var(--lec)}
-.week-legend span:last-child::before{background:var(--prac)}
-.board-filters{display:flex;align-items:center;gap:4px 12px;flex-wrap:wrap;padding:6px 0;border-top:1px solid var(--l)}
+.board-controls .quick-today .ui-icon{width:15px;height:15px;color:inherit}
+.view-toggle{display:flex;gap:2px;padding:3px;margin-left:auto;border-radius:10px;background:var(--s2)}
+.view-toggle button{
+ min-height:36px;padding:3px 10px;border:1px solid transparent;border-radius:8px;background:none;
+ color:var(--m);font-size:calc(12px * var(--text-scale));
+}
+.view-toggle button[aria-pressed=true]{background:var(--s);border-color:var(--l);color:var(--t);box-shadow:0 1px 3px #00000009}
+.focus-app .day-nav{gap:5px;border:0;padding:0}
+.focus-app .day-nav button,.focus-app .day-nav button.on{
+ min-height:54px;padding:5px 1px;gap:2px;border:1px solid var(--l);border-radius:11px;
+ background:var(--s);color:var(--t);box-shadow:none;
+}
+.focus-app .day-nav button:hover{background:var(--s2)}
+.focus-app .day-nav button.on{background:var(--calendar-active,var(--a));border-color:transparent;color:var(--calendar-active-text,var(--ao))}
+.focus-app .day-nav button>span:first-child{font-size:calc(10px * var(--text-scale))}
+.focus-app .day-nav small{color:inherit;font-size:calc(18px * var(--text-scale));line-height:1.12;font-variant-numeric:tabular-nums}
+.focus-app .day-dots{gap:2px;margin:0;min-height:5px}
+.focus-app .day-nav .day-dots i{width:3px;height:3px;background:currentColor}
+.focus-app .today-beacon{width:4px;height:4px;top:5px;right:5px}
+.board-filters{display:flex;align-items:center;gap:4px 9px;flex-wrap:wrap;margin-top:6px}
 .board-filters .subgroup-tools{width:auto;gap:5px}
-.board-filters .subgroups{padding:2px;border-radius:0}
-.board-filters .subgroups button,.board-filters .remember-filter{min-height:42px;border-radius:0}
-.board-filters .filter-summary{margin:0;padding:0;font-size:calc(12px * var(--text-scale))}
+.board-filters .subgroups{padding:2px}
+.board-filters .subgroups button,.board-filters .remember-filter{min-height:40px}
+.board-filters .filter-summary{margin:0;padding:0;font-size:calc(11px * var(--text-scale))}
+.focus-app .search-field{margin:8px 0 0}
 
-.notice-app .day-nav{padding:0;border:1px solid var(--t);gap:0}
-.notice-app .day-nav button,.notice-app .day-nav button.on{
- min-height:57px;padding:4px 1px;gap:1px;border:0;border-radius:0;border-right:1px solid var(--l);background:var(--bg);color:var(--t);box-shadow:none;
+.focus-app .agenda{padding:13px 0 0;--time-width:clamp(67px,13vw,110px)}
+.focus-app .agenda-heading{margin:0 0 8px}
+.focus-app .summary h2{margin:0 0 3px;font-size:calc(clamp(21px,3.2vw,31px) * var(--text-scale));font-weight:760;line-height:1.13;letter-spacing:-.05em;text-transform:none}
+.focus-app .summary h2::first-letter{text-transform:uppercase}
+.focus-app .summary #summaryCount{font-size:calc(12px * var(--text-scale));color:var(--m)}
+.focus-app .summary .day-summary{display:inline-flex;margin-left:4px;flex-wrap:wrap;gap:3px}
+.focus-app .summary .day-summary span{padding:0 3px;border:0;background:none;color:var(--m);font-size:calc(11px * var(--text-scale))}
+.focus-app .cards{display:grid;gap:7px}
+.focus-app .card,.focus-app .card:hover{border:1px solid var(--l);border-radius:14px;background:var(--s);box-shadow:none;transform:none}
+.focus-app .card.live{border:2px solid var(--indicator-color)}
+.focus-app .card.live::after,.focus-app .card-button::before{content:none}
+.focus-app .card-button,html[data-density=compact] .focus-app .card-button{
+ grid-template-columns:var(--time-width) minmax(0,1fr) 14px;gap:10px;min-height:0;padding:12px;
+ border-radius:13px;align-items:center;
 }
-.notice-app .day-nav button:last-child{border-right:0}
-.notice-app .day-nav button:hover{background:var(--s2)}
-.notice-app .day-nav button.on{background:var(--calendar-active,var(--a));color:var(--calendar-active-text,var(--ao))}
-.notice-app .day-nav button small{color:inherit;font:700 calc(21px * var(--text-scale))/1 var(--number-font)}
-.notice-app .day-nav button>span:first-child{font-size:calc(10px * var(--text-scale))}
-.notice-app .day-dots{gap:2px;margin:1px 0 0;min-height:6px}
-.notice-app .day-nav .day-dots i{width:3px;height:3px;background:currentColor}
-.notice-app .today-beacon{width:4px;height:4px;right:6px;top:6px}
-.notice-app .day-nav button:focus-visible{outline-offset:-3px}
-.notice-app .search-field{margin:7px 0;border-radius:0}
-.notice-app .agenda{padding:14px 0 0;--list-columns:clamp(84px,12vw,160px) minmax(0,1fr) clamp(88px,15vw,193px) 32px;--list-gap:12px}
-.agenda-heading{margin:0 0 9px}
-.notice-app .summary h2{
- margin:0 0 4px;font:400 calc(clamp(28px,4vw,53px) * var(--text-scale))/1.07 var(--display-font);
- letter-spacing:-.035em;text-transform:none;
+.focus-app .card-button:hover{background:color-mix(in srgb,var(--a) 5%,var(--s))}
+.focus-app .time-block,html[data-density=compact] .focus-app .time-block{
+ grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+ align-self:stretch;gap:3px;border:0;border-right:1px solid var(--l);padding:0 6px 0 0;font-variant-numeric:tabular-nums;
 }
-.notice-app .summary h2::first-letter{text-transform:uppercase}
-.notice-app .summary #summaryCount{font-size:calc(12px * var(--text-scale));color:var(--m)}
-.notice-app .summary .day-summary{display:inline-flex;margin-left:4px;flex-wrap:wrap;gap:3px}
-.notice-app .summary .day-summary span{font-size:calc(11px * var(--text-scale));background:none;border:0;color:var(--m);padding:0 3px}
-.lesson-columns{
- display:grid;grid-template-columns:var(--list-columns);gap:var(--list-gap);padding:6px 0;border-block:1px solid var(--t);
- color:var(--m);font-size:calc(10px * var(--text-scale));font-weight:650;letter-spacing:.12em;text-transform:uppercase;
+.focus-app .time-block b{font-size:calc(26px * var(--text-scale));font-weight:750;line-height:1.06;letter-spacing:-.06em}
+.focus-app .time-block b::after{content:none}
+.focus-app .time-block small{font-size:calc(12px * var(--text-scale));color:var(--m)}
+.focus-app .lesson-body{grid-column:2;grid-row:1;gap:5px}
+.focus-app .title{font-size:calc(18px * var(--text-scale));line-height:1.2;letter-spacing:-.025em}
+.focus-app .lesson-location{display:flex;flex-wrap:wrap;align-items:center;gap:3px 8px}
+.focus-app .lesson-room{
+ display:inline-flex;align-items:center;gap:5px;max-width:100%;padding:3px 7px;border-radius:6px;
+ background:var(--s2);color:var(--t);font-size:calc(13px * var(--text-scale));font-weight:700;line-height:1.15;overflow-wrap:anywhere;
 }
-.notice-app .cards{display:block}
-.notice-app .card,.notice-app .card:hover{
- border:0;border-bottom:1px solid var(--l);border-radius:0;background:none;box-shadow:none;transform:none;overflow:visible;
+.focus-app .lesson-room .ui-icon{width:13px;height:13px;color:var(--a)}
+.focus-app .lesson-room.missing{background:none;color:var(--m);font-size:calc(11px * var(--text-scale));font-weight:500;padding-inline:0}
+.focus-app .lesson-top{gap:3px 7px}
+.focus-app .lesson-top .subgroup-label,.focus-app .lesson-type,.focus-app .lesson-live{
+ padding:0;border:0;background:none;border-radius:0;font-size:calc(10px * var(--text-scale));line-height:1.2;
 }
-.notice-app .card.live{border-bottom:2px solid var(--indicator-color)}
-.notice-app .card.live::after,.notice-app .card-button::before{content:none}
-.notice-app .card-button,html[data-density=compact] .notice-app .card-button{grid-template-columns:var(--list-columns);gap:var(--list-gap);min-height:0;padding:10px 0;border-radius:0}
-.notice-app .card-button:hover{background:var(--s2)}
-.notice-app .time-block,html[data-density=compact] .notice-app .time-block{
- grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
- border:0;padding:0;font-family:var(--number-font);
-}
-.notice-app .time-block b{font-size:calc(clamp(18px,2.2vw,28px) * var(--text-scale));font-weight:700;line-height:1.04}
-.notice-app .time-block b::after{content:none}
-.notice-app .time-block small{font-size:calc(11px * var(--text-scale))}
-.notice-app .pair-no{margin:3px 0 0;padding:0;font-size:calc(9px * var(--text-scale))}
-.notice-app .lesson-body{grid-column:2;grid-row:1;gap:5px;align-self:center}
-.notice-app .title{font-size:calc(18px * var(--text-scale));line-height:1.2;letter-spacing:-.02em}
-.notice-app .lesson-top{gap:5px 9px}
-.notice-app .lesson-top .subgroup-label,.notice-app .lesson-type,.notice-app .lesson-live{
- border:0;border-radius:0;background:none;padding:0;font-size:calc(10px * var(--text-scale));line-height:1.2;
-}
-.notice-app .lesson-type{color:var(--class-color);letter-spacing:.06em}
-.notice-app .lesson-meta{color:var(--m);font-size:calc(11px * var(--text-scale))}
-.notice-app .lesson-meta .ui-icon{display:none}
-.notice-app .lesson-room{grid-column:3;grid-row:1;align-self:center;font-size:calc(13px * var(--text-scale));font-weight:600;overflow-wrap:anywhere}
-.notice-app .card-chevron{grid-column:4;grid-row:1;align-self:center;font:400 23px/1 var(--number-font);color:var(--a)}
-.notice-app .card-chevron::before{content:"+"}
-.notice-app .card-button[aria-expanded=true] .card-chevron::before{content:"−"}
-.notice-app .detail{margin:0;padding:12px 6px;border-top:1px dashed var(--l)}
-.notice-app .lesson-gap{justify-content:flex-start;gap:7px;padding:3px 0;font-size:calc(10px * var(--text-scale));border-bottom:1px solid var(--l)}
-.notice-app .lesson-gap .ui-icon{width:12px;height:12px}
-.notice-app .lesson-gap::before,.notice-app .lesson-gap::after{display:none}
-html[data-density=compact] .notice-app .card-button{padding-block:6px}
+.focus-app .lesson-live{color:var(--indicator-text);font-weight:750}
+.focus-app .card-chevron{grid-column:3;grid-row:1;align-self:center;width:14px;color:var(--a)}
+.focus-app .card-chevron .ui-icon{width:14px;height:14px;color:inherit}
+.focus-app .card-button[aria-expanded=true] .card-chevron{transform:rotate(90deg)}
+.focus-app .detail{margin:0;padding:12px;border-top:1px solid var(--l)}
+.focus-app .lesson-gap{padding:0 2px;min-height:13px;justify-content:flex-start;gap:5px;font-size:calc(10px * var(--text-scale))}
+.focus-app .lesson-gap::before,.focus-app .lesson-gap::after{display:none}
+.focus-app .lesson-gap .ui-icon{width:11px;height:11px}
+html[data-density=compact] .focus-app .card-button{padding-block:7px}
 
-.week-scroll{overflow:auto;overscroll-behavior-x:contain;border:1px solid var(--t)}
+.week-legend{display:flex;gap:4px 9px;align-items:center;flex-wrap:wrap;font-size:calc(11px * var(--text-scale));color:var(--m)}
+.week-legend span{display:flex;gap:5px;align-items:center}
+.week-legend span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lec)}
+.week-legend span:last-child::before{background:var(--prac)}
+.week-scroll{overflow:auto;overscroll-behavior-x:contain;border:1px solid var(--l);border-radius:13px;background:var(--s)}
 .week-grid{width:100%;min-width:660px;border-collapse:collapse;table-layout:fixed}
 .week-grid th,.week-grid td{border:1px solid var(--l)}
-.week-grid .slot-head,.week-grid .slot-index{width:42px;padding:4px;font-size:calc(11px * var(--text-scale));color:var(--m)}
+.week-grid tr:first-child th{border-top:0}
+.week-grid .slot-head,.week-grid .slot-index{width:40px;padding:3px;font-size:calc(11px * var(--text-scale));color:var(--m)}
 .week-grid th,.week-grid td[data-today]{background:var(--s2)}
-.week-day-button{display:grid;gap:2px;align-content:center;width:100%;min-height:53px;padding:4px;border:0;background:transparent}
-.week-day-button b{font:700 calc(19px * var(--text-scale))/1 var(--number-font)}
+.week-day-button{display:grid;gap:2px;width:100%;min-height:50px;padding:4px;border:0;background:none}
+.week-day-button b{font-size:calc(18px * var(--text-scale));font-variant-numeric:tabular-nums}
 .week-day-button span{font-size:calc(11px * var(--text-scale))}
 .week-day-button[aria-current=date]{background:var(--a);color:var(--ao)}
 .week-grid td{vertical-align:top;padding:3px}
-.week-slot{display:grid;gap:3px;width:100%;min-height:68px;padding:4px;border:0;border-top:2px solid var(--prac);background:none;text-align:left}
-.week-slot.lec{border-top-color:var(--lec)}
-.week-slot+.week-slot{margin-top:5px}
+.week-slot{
+ display:grid;gap:3px;width:100%;min-height:68px;padding:5px;border:0;border-inline-start:2px solid var(--prac);
+ border-radius:7px;background:color-mix(in srgb,var(--prac) 8%,var(--s));text-align:left;
+}
+.week-slot.lec{border-inline-start-color:var(--lec);background:color-mix(in srgb,var(--lec) 8%,var(--s))}
+.week-slot+.week-slot{margin-top:4px}
 .week-slot:hover{background:var(--s2)}
 .week-slot.on-now{outline:2px solid var(--indicator-color);outline-offset:-2px}
-.week-slot .slot-time{display:flex;flex-wrap:wrap;gap:1px 6px;justify-content:space-between;font-size:calc(10px * var(--text-scale));color:var(--m)}
+.week-slot .slot-time{display:flex;flex-wrap:wrap;gap:1px 5px;justify-content:space-between;font-size:calc(10px * var(--text-scale));color:var(--m)}
 .week-slot strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font-size:calc(12px * var(--text-scale));line-height:1.18;overflow-wrap:anywhere}
 .week-slot .slot-meta{font-size:calc(10px * var(--text-scale));color:var(--m)}
 .week-empty{margin:0;padding:20px;text-align:center;color:var(--m)}
 
-.notice-app .workspace-foot{display:flex;flex-wrap:wrap;align-items:center;margin-top:18px;gap:3px 7px;border-top:1px solid var(--t)}
-.workspace-foot .utility-strip{display:flex;flex-wrap:wrap;gap:3px;margin:0}
-.workspace-foot .utility-strip button{min-height:44px;width:auto;max-width:100%;padding:3px 5px;border-radius:0}
+.focus-app .current-panel{
+ display:flex;flex-wrap:wrap;align-items:center;gap:3px 12px;margin:12px 0 0;padding:6px 10px;
+ border:1px solid var(--l);border-radius:11px;background:var(--s);min-width:0;
+}
+.focus-app .current-panel::before{display:none}
+.focus-app .current-panel .status{flex:1 1 480px;margin:0;background:none}
+.focus-app .current-panel .status-text{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:3px 7px}
+.focus-app .status b{font-size:calc(10px * var(--text-scale));background:var(--s2);color:var(--t);padding:3px 5px;border-radius:4px}
+.focus-app .status-subject{font-size:calc(13px * var(--text-scale));overflow-wrap:anywhere}
+.focus-app .status-location{display:flex;flex-wrap:wrap;gap:3px 6px}
+.focus-app .status-location:has(>div[hidden]+div[hidden]){display:none}
+.focus-app .status-meta{display:flex;align-items:center;gap:3px;color:var(--m);font-size:calc(10px * var(--text-scale))}
+.focus-app .status-meta .ui-icon{width:11px;height:11px;color:inherit}
+.focus-app .countdown-row{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:3px 5px;margin:0}
+.focus-app .countdown-row strong,.focus-app .status-clock{font-size:calc(14px * var(--text-scale));margin:0}
+.focus-app .countdown-row span,.focus-app .ufa-time{font-size:calc(10px * var(--text-scale));color:var(--m);margin:0}
+.focus-app .status-progress{align-self:center;width:45px;height:3px;margin:0}
+.focus-app .current-panel .status-action{display:flex;align-items:center;gap:5px;min-height:44px;width:auto;margin:0;padding:2px 0;border:0;border-radius:0;color:var(--a);font-size:calc(11px * var(--text-scale))}
+.focus-app .status-action .ui-icon{width:13px;height:13px;color:inherit}
+.focus-app .workspace-foot{display:flex;align-items:center;flex-wrap:wrap;margin-top:12px;gap:4px 8px}
+.workspace-foot .utility-strip{margin:0;gap:4px;flex-wrap:wrap}
+.workspace-foot .utility-strip button{min-height:44px;width:auto;max-width:100%;padding:3px 6px}
 .workspace-foot .credit{margin-left:auto}
-#modal,#onboard{background:#151a38a3}
-#modal .panel,#onboard .panel{border:0;border-top:6px solid #f9db62;border-radius:0;background:var(--s)}
-#modal .panel-head{padding-bottom:8px;border-bottom:1px solid var(--t);margin-bottom:10px}
-#modal .panel-head h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:calc(31px * var(--text-scale))}
-#modal .panel-head .icon,#modal .choice,#modal .menu-item,#modal .teacher-pick{border-radius:0}
+.load-details{font-size:calc(12px * var(--text-scale));color:var(--m)}
+.load-details summary{padding:6px 0}
+.load-details .week-panel{display:block;width:min(100%,340px)}
+#modal .panel,#onboard .panel{background:var(--s)}
+
 @media(max-width:760px){
- .notice-app .site-bar-inner,.notice-app .workspace{padding-inline:11px}
- .site-bar-inner{min-height:52px;gap:5px}
- .site-bar .brand{gap:3px}
- .site-bar .logo{width:22px;height:22px}
- .site-bar .brand-wordmark{font-size:14px}
- .site-bar .freshness-shortcut{gap:4px;padding:3px 1px}
- .site-bar .freshness-shortcut strong{font-size:calc(12px * var(--text-scale))}
- .site-bar .freshness-shortcut>.ui-icon{width:11px;height:11px;margin:0}
- .site-actions .icon{width:34px;min-width:34px}
- .site-actions #themeButton{display:none}
- .notice-app .workspace{padding-block:0 calc(81px + env(safe-area-inset-bottom))}
- .masthead{flex-direction:column;align-items:flex-start;gap:10px;padding:15px 13px}
- .masthead h1{font-size:calc(clamp(37px,10.2vw,62px) * var(--text-scale))}
- .masthead .eyebrow{margin-bottom:5px;font-size:calc(9px * var(--text-scale))}
- .masthead .group-switch{align-self:flex-start;min-height:44px}
- .masthead .group-monogram{width:26px;height:26px}
- .masthead .group-copy strong{font-size:calc(13px * var(--text-scale))}
- .masthead .group-copy small{font-size:calc(10px * var(--text-scale))}
- .notice-app .current-panel{padding:5px 0;gap:0}
- .notice-app .current-panel .status{flex-basis:100%}
- .notice-app .current-panel .status-text{gap:3px 6px}
- .notice-app .status-subject{font-size:calc(13px * var(--text-scale))}
- .notice-app .current-panel .status-action{min-height:36px;font-size:calc(11px * var(--text-scale))}
- .board-controls{gap:3px 6px;padding-block:4px 1px}
- .board-controls .weekbar button{min-width:29px}
- .board-controls .weekbar .week-title{font-size:calc(13px * var(--text-scale))}
- .view-toggle button{padding-inline:5px;font-size:calc(11px * var(--text-scale))}
- .week-legend{order:3;flex-basis:100%}
- .notice-app .day-nav button,.notice-app .day-nav button.on{min-height:46px}
- .notice-app .day-nav button small{font-size:calc(17px * var(--text-scale))}
- .notice-app .agenda{padding-top:9px;--list-columns:calc(48px * var(--text-scale)) minmax(0,1fr) minmax(0,64px) 14px;--list-gap:5px}
- .lesson-columns{font-size:calc(9px * var(--text-scale));letter-spacing:.045em;overflow-wrap:anywhere}
- .notice-app .time-block b{font-size:calc(16px * var(--text-scale))}
- .notice-app .title{font-size:calc(14px * var(--text-scale))}
- .notice-app .lesson-room{font-size:calc(11px * var(--text-scale))}
- .notice-app .lesson-meta{display:none}
- .notice-app .lesson-type,.notice-app .lesson-top .subgroup-label,.notice-app .lesson-live{font-size:calc(9px * var(--text-scale))}
- .notice-app .card-chevron{font-size:18px}
- html[data-glass] .footer{gap:0;padding:0 3px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--t);background:var(--bg)}
- .footer button{min-height:49px;border-radius:0;border-right:1px solid var(--l)}
- .footer button:nth-of-type(4){border-right:0}
- .footer button.active{border-radius:0;background:var(--s2);color:var(--a)}
+ .focus-app .site-bar-inner,.focus-app .workspace{padding-inline:12px}
+ .site-bar-inner{grid-template-columns:minmax(0,1fr) auto;gap:2px 6px;min-height:0;padding-block:4px 6px}
+ .app-heading .logo{width:27px;height:27px}
+ .app-heading h1{font-size:calc(21px * var(--text-scale))}
+ .site-actions #themeButton,.site-actions #menuButton{display:none}
+ .site-actions .icon{width:42px;height:40px;min-width:42px}
+ .site-context{grid-column:1/-1;grid-row:2;justify-content:space-between;gap:3px 6px}
+ .site-context .group-switch{min-height:40px;gap:4px;padding-inline:4px 6px}
+ .site-context .group-monogram{width:22px;height:22px}
+ .site-context .group-copy strong{font-size:calc(12px * var(--text-scale))}
+ .site-context .group-copy small{display:none}
+ .site-context .freshness-shortcut{min-height:40px;gap:4px}
+ .focus-app .workspace{padding-block:7px calc(79px + env(safe-area-inset-bottom))}
+ .board-controls{gap:3px 6px;margin-bottom:5px}
+ .board-controls .weekbar button{min-width:31px;min-height:39px}
+ .board-controls .weekbar .week-title{font-size:calc(12px * var(--text-scale));padding-inline:3px}
+ .view-toggle button{min-height:33px;padding-inline:6px;font-size:calc(11px * var(--text-scale))}
+ .board-controls .quick-today{order:3;min-height:37px}
+ .week-legend{order:4;flex-basis:100%}
+ .focus-app .day-nav{gap:4px}
+ .focus-app .day-nav button,.focus-app .day-nav button.on{min-height:48px;border-radius:9px}
+ .focus-app .agenda{padding-top:10px;--time-width:calc(63px * var(--text-scale))}
+ .focus-app .agenda-heading{margin-bottom:6px}
+ .focus-app .summary h2{font-size:calc(20px * var(--text-scale))}
+ .focus-app .summary .day-summary span:last-child{display:none}
+ .focus-app .card-button,html[data-density=compact] .focus-app .card-button{grid-template-columns:var(--time-width) minmax(0,1fr) 12px;gap:6px;padding:8px}
+ .focus-app .time-block b{font-size:calc(22px * var(--text-scale))}
+ .focus-app .time-block small{font-size:calc(11px * var(--text-scale))}
+ .focus-app .title{font-size:calc(15px * var(--text-scale))}
+ .focus-app .lesson-room{font-size:calc(14px * var(--text-scale))}
+ .focus-app .card-chevron,.focus-app .card-chevron .ui-icon{width:12px;height:12px}
+ html[data-glass] .footer{gap:2px;padding:3px 6px calc(11px + env(safe-area-inset-bottom));background:var(--s)}
+ .footer button{min-height:46px}
+ .footer button.active{background:var(--s2);color:var(--a)}
  .footer .credit{bottom:1px}
- #modal{padding:0;align-items:stretch}
- #modal .panel{width:100%;max-height:none;height:100dvh;padding:block 8px}
- #modal .sheet-grip{display:none}
 }
 
 </style>
 </head>
 <body>
 <canvas id="backgroundEffects" class="background-effects" aria-hidden="true" hidden></canvas>
-<div class="app-shell notice-app" id="appShell">
+<div class="app-shell focus-app" id="appShell">
   <header class="site-bar">
     <div class="site-bar-inner">
-      <div class="brand">
-        <div class="logo"><span id="brandFallback">🌾</span><img class="brand-icon" id="brandIcon" alt="" hidden></div>
-        <div class="brand-wordmark">БашГАУ</div>
+      <div class="app-heading">
+        <div class="logo"><span id="brandFallback" aria-hidden="true">🌾</span><img class="brand-icon" id="brandIcon" alt="БашГАУ" hidden></div>
+        <h1 id="appTitle"></h1>
       </div>
-      <button class="data-info freshness-shortcut" id="dataInfo" data-action="freshness" aria-haspopup="dialog"></button>
+      <div class="site-context">
+        <button class="group-switch" data-action="groups" id="groupButton" aria-haspopup="dialog"></button>
+        <button class="data-info freshness-shortcut" id="dataInfo" data-action="freshness" aria-haspopup="dialog"></button>
+      </div>
       <div class="site-actions">
         <button class="icon" data-action="search" id="searchButton" aria-label="Search"></button>
         <button class="icon" data-action="themes" id="themeButton" aria-label="Theme"><span data-icon="palette"></span></button>
@@ -960,28 +938,8 @@ html[data-density=compact] .notice-app .card-button{padding-block:6px}
     </div>
   </header>
   <main class="workspace">
-    <div class="masthead">
-      <div class="masthead-title"><p class="eyebrow" data-i18n="semesterLabel"></p><h1 id="appTitle"></h1></div>
-      <button class="group-switch" data-action="groups" id="groupButton" aria-haspopup="dialog"></button>
-    </div>
     <nav class="quick-groups" id="quickGroups" hidden></nav>
     <div class="update-banner" id="updateBanner" hidden><button id="updateDetails" data-action="updates"></button><button class="icon" id="dismissUpdate" data-action="dismissUpdate">✕</button></div>
-    <section class="current-panel" aria-labelledby="statusLabel">
-          <div class="status" id="status"><div class="status-text">
-            <b id="statusLabel"></b>
-            <strong class="status-subject" id="statusSubject" hidden></strong>
-            <div class="status-location">
-              <div class="status-meta" id="statusTime" hidden><span data-icon="clock"></span><span id="statusTimeText"></span></div>
-              <div class="status-meta" id="statusRoom" hidden><span data-icon="pin"></span><span id="statusRoomText"></span></div>
-            </div>
-            <span class="status-meta" id="statusParallel" hidden></span>
-            <div class="countdown-row" id="countdownRow" hidden><strong id="statusCountdown" role="timer"></strong><span id="statusCaption"></span></div>
-            <span class="status-progress" id="statusProgress" aria-hidden="true" hidden><i id="statusProgressValue"></i></span>
-            <span class="status-clock" id="statusClock" hidden></span>
-            <span class="ufa-time" id="statusUfa" data-i18n="ufaTime" hidden></span>
-          </div></div>
-          <button class="text-link status-action" id="statusAction" data-action="openUpcoming" hidden><span data-i18n="openUpcoming"></span><span data-icon="arrowUpRight"></span></button>
-    </section>
       <section class="planner-board" aria-label="Расписание" id="plannerBoard">
         <div class="board-controls">
           <div class="weekbar">
@@ -1010,13 +968,26 @@ html[data-density=compact] .notice-app .card-button{padding-block:6px}
         <div class="week-scroll" id="weekGrid" hidden></div>
         <section class="agenda" id="dailyAgenda">
           <div class="agenda-heading"><div class="summary"><h2 id="summaryTitle"></h2><span id="summaryCount"></span></div></div>
-          <div class="lesson-columns" id="lessonColumns" hidden>
-            <span data-i18n="listTime"></span><span data-i18n="subject"></span><span data-i18n="room"></span>
-          </div>
           <section class="cards" id="cards" aria-live="polite"></section>
           <div class="agenda-end" id="agendaEnd" data-i18n="dayEnd"></div>
         </section>
       </section>
+    <section class="current-panel" aria-labelledby="statusLabel">
+          <div class="status" id="status"><div class="status-text">
+            <b id="statusLabel"></b>
+            <strong class="status-subject" id="statusSubject" hidden></strong>
+            <div class="status-location">
+              <div class="status-meta" id="statusTime" hidden><span data-icon="clock"></span><span id="statusTimeText"></span></div>
+              <div class="status-meta" id="statusRoom" hidden><span data-icon="pin"></span><span id="statusRoomText"></span></div>
+            </div>
+            <span class="status-meta" id="statusParallel" hidden></span>
+            <div class="countdown-row" id="countdownRow" hidden><strong id="statusCountdown" role="timer"></strong><span id="statusCaption"></span></div>
+            <span class="status-progress" id="statusProgress" aria-hidden="true" hidden><i id="statusProgressValue"></i></span>
+            <span class="status-clock" id="statusClock" hidden></span>
+            <span class="ufa-time" id="statusUfa" data-i18n="ufaTime" hidden></span>
+          </div></div>
+          <button class="text-link status-action" id="statusAction" data-action="openUpcoming" hidden><span data-i18n="openUpcoming"></span><span data-icon="arrowUpRight"></span></button>
+    </section>
     <footer class="workspace-foot">
       <div class="utility-strip">
         <button class="offline-pill" id="offlineShortcut" data-action="offline" aria-haspopup="dialog"><i aria-hidden="true"></i><span class="offline-symbol" data-icon="offline"></span><span id="offlineLabel"></span></button>
@@ -1106,11 +1077,11 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt
 const UPGRADE_I18N={"ru":{"effectAurora":"Сияние","effectWaves":"Волны","effectStars":"Созвездия","effectIntensity":"Интенсивность фона","paletteSaturation":"Насыщенность акцентов","paletteSaturationHint":"Меняет цвет иконок и календаря. Индикатор текущей пары настраивается отдельно.","cardDensity":"Плотность карточек","densityComfort":"Удобно","densityCompact":"Компактно","appearanceUndo":"Отменить","appearanceUndone":"Настройки при открытии восстановлены","pauseBackground":"Приостановить фон","resumeBackground":"Оживить фон","classMinutes":"{n} мин занятий","classBreak":"Перерыв · {n} мин","freeWindow":"Окно · {n} мин","jumpCurrent":"К текущей паре","nextTeachingDay":"Ближайший учебный день","noFurtherLessons":"Дальше в этом семестре занятий нет","copyLesson":"Скопировать пару","teacherLessons":"Пары преподавателя","commonLessons":"Общие пары для всей группы","selectedFilter":"{filter} + общие пары","effectHint":"Фон остаётся за текстом и кнопками. В скрытой вкладке анимация приостанавливается.","motionLabel":"Плавные переходы","motionDescription":"Открытие меню, переключение дней и карточек. Движение фона настраивается отдельно.","indicatorSaturationHint":"0% — серый, 100% — выбранный цвет. Если индикатор сливается с иконками, его оттенок автоматически меняется.","sourceConflictShort":"Пересечение в источнике","checkAhead":"Этот файл новее опубликованного сайта"},"en":{"effectAurora":"Aurora","effectWaves":"Waves","effectStars":"Constellations","effectIntensity":"Background intensity","paletteSaturation":"Accent saturation","paletteSaturationHint":"Adjusts icons and calendar colours. The current-class indicator has separate controls.","cardDensity":"Card spacing","densityComfort":"Comfortable","densityCompact":"Compact","appearanceUndo":"Undo","appearanceUndone":"Settings restored to when you opened this panel","pauseBackground":"Pause background","resumeBackground":"Animate background","classMinutes":"{n} min of classes","classBreak":"Break · {n} min","freeWindow":"Free period · {n} min","jumpCurrent":"Current class","nextTeachingDay":"Next teaching day","noFurtherLessons":"No later classes in this semester","copyLesson":"Copy class","teacherLessons":"Teacher’s classes","commonLessons":"Classes for the whole group","selectedFilter":"{filter} + shared classes","effectHint":"The background stays behind text and buttons. Animation pauses in hidden tabs.","motionLabel":"Smooth transitions","motionDescription":"Menu, day and card transitions. Background motion is controlled separately.","indicatorSaturationHint":"0% is grey; 100% uses your chosen colour. If it blends into the icons, the indicator hue adjusts automatically.","sourceConflictShort":"Source overlap","checkAhead":"This file is newer than the published site"},"es":{"effectAurora":"Aurora","effectWaves":"Ondas","effectStars":"Constelaciones","effectIntensity":"Intensidad del fondo","paletteSaturation":"Saturación de los acentos","paletteSaturationHint":"Ajusta los colores de los iconos y del calendario. El indicador de la clase actual se configura por separado.","cardDensity":"Espaciado de tarjetas","densityComfort":"Cómodo","densityCompact":"Compacto","appearanceUndo":"Deshacer","appearanceUndone":"Se restauró la configuración al abrir este panel","pauseBackground":"Pausar fondo","resumeBackground":"Animar fondo","classMinutes":"{n} min de clases","classBreak":"Descanso · {n} min","freeWindow":"Hora libre · {n} min","jumpCurrent":"Clase actual","nextTeachingDay":"Próximo día de clases","noFurtherLessons":"No hay más clases este semestre","copyLesson":"Copiar clase","teacherLessons":"Clases del docente","commonLessons":"Clases para todo el grupo","selectedFilter":"{filter} + clases comunes","effectHint":"El fondo permanece detrás del texto y los botones. La animación se pausa en pestañas ocultas.","motionLabel":"Transiciones suaves","motionDescription":"Transiciones de menús, días y tarjetas. El movimiento del fondo se controla por separado.","indicatorSaturationHint":"0% es gris; 100% usa el color elegido. Si se confunde con los iconos, el tono del indicador se ajusta automáticamente.","sourceConflictShort":"Solapamiento en la fuente","checkAhead":"Este archivo es más reciente que el sitio publicado"},"fr":{"effectAurora":"Aurore","effectWaves":"Vagues","effectStars":"Constellations","effectIntensity":"Intensité du fond","paletteSaturation":"Saturation des accents","paletteSaturationHint":"Règle les couleurs des icônes et du calendrier. L’indicateur du cours actuel se règle séparément.","cardDensity":"Espacement des cartes","densityComfort":"Confortable","densityCompact":"Compact","appearanceUndo":"Annuler","appearanceUndone":"Réglages restaurés à l’ouverture de ce panneau","pauseBackground":"Mettre le fond en pause","resumeBackground":"Animer le fond","classMinutes":"{n} min de cours","classBreak":"Pause · {n} min","freeWindow":"Créneau libre · {n} min","jumpCurrent":"Cours actuel","nextTeachingDay":"Prochain jour de cours","noFurtherLessons":"Aucun autre cours ce semestre","copyLesson":"Copier le cours","teacherLessons":"Cours de l’enseignant","commonLessons":"Cours pour tout le groupe","selectedFilter":"{filter} + cours communs","effectHint":"Le fond reste derrière le texte et les boutons. L’animation s’arrête dans les onglets masqués.","motionLabel":"Transitions fluides","motionDescription":"Transitions des menus, jours et cartes. Le mouvement du fond se règle séparément.","indicatorSaturationHint":"0 % est gris ; 100 % utilise la couleur choisie. Si elle se confond avec les icônes, la teinte de l’indicateur s’ajuste automatiquement.","sourceConflictShort":"Chevauchement dans la source","checkAhead":"Ce fichier est plus récent que le site publié"},"pt":{"effectAurora":"Aurora","effectWaves":"Ondas","effectStars":"Constelações","effectIntensity":"Intensidade do fundo","paletteSaturation":"Saturação dos destaques","paletteSaturationHint":"Ajusta as cores dos ícones e do calendário. O indicador da aula atual é configurado separadamente.","cardDensity":"Espaçamento dos cartões","densityComfort":"Confortável","densityCompact":"Compacto","appearanceUndo":"Desfazer","appearanceUndone":"Configurações restauradas ao abrir este painel","pauseBackground":"Pausar fundo","resumeBackground":"Animar fundo","classMinutes":"{n} min de aulas","classBreak":"Intervalo · {n} min","freeWindow":"Horário livre · {n} min","jumpCurrent":"Aula atual","nextTeachingDay":"Próximo dia de aulas","noFurtherLessons":"Não há mais aulas neste semestre","copyLesson":"Copiar aula","teacherLessons":"Aulas do professor","commonLessons":"Aulas para toda a turma","selectedFilter":"{filter} + aulas comuns","effectHint":"O fundo fica atrás do texto e dos botões. A animação pausa nas abas ocultas.","motionLabel":"Transições suaves","motionDescription":"Transições de menus, dias e cartões. O movimento do fundo é controlado separadamente.","indicatorSaturationHint":"0% é cinza; 100% usa a cor escolhida. Se ela se confundir com os ícones, o tom do indicador é ajustado automaticamente.","sourceConflictShort":"Sobreposição na fonte","checkAhead":"Este arquivo é mais recente que o site publicado"}};
 for(const [code,values] of Object.entries(UPGRADE_I18N))Object.assign(I18N[code],values);
 const UPCOMING_I18N={
- ru:{upcomingClass:'Ближайшая пара',openUpcoming:'К расписанию дня',noUpcoming:'Предстоящих пар нет',parallelClasses:'Занятий в это время: {n}',viewDay:'День',viewWeek:'Неделя',plannerViews:'Вид расписания',slotHeader:'Пара',emptyWeek:'На этой неделе занятий нет',listTime:'Время'},
- en:{upcomingClass:'Upcoming class',openUpcoming:'View day schedule',noUpcoming:'No upcoming classes',parallelClasses:'Classes at this time: {n}',viewDay:'Day',viewWeek:'Week',plannerViews:'Timetable view',slotHeader:'Class',emptyWeek:'No classes this week',listTime:'Time'},
- es:{upcomingClass:'Próxima clase',openUpcoming:'Ver horario del día',noUpcoming:'No hay próximas clases',parallelClasses:'Clases a esta hora: {n}',viewDay:'Día',viewWeek:'Semana',plannerViews:'Vista del horario',slotHeader:'Clase',emptyWeek:'No hay clases esta semana',listTime:'Hora'},
- fr:{upcomingClass:'Prochain cours',openUpcoming:'Voir le planning du jour',noUpcoming:'Aucun cours à venir',parallelClasses:'Cours à cette heure : {n}',viewDay:'Jour',viewWeek:'Semaine',plannerViews:'Vue du planning',slotHeader:'Cours',emptyWeek:'Aucun cours cette semaine',listTime:'Heure'},
- pt:{upcomingClass:'Próxima aula',openUpcoming:'Ver horário do dia',noUpcoming:'Não há aulas futuras',parallelClasses:'Aulas a esta hora: {n}',viewDay:'Dia',viewWeek:'Semana',plannerViews:'Vista do horário',slotHeader:'Aula',emptyWeek:'Sem aulas nesta semana',listTime:'Hora'}
+ ru:{upcomingClass:'Ближайшая пара',openUpcoming:'К расписанию дня',noUpcoming:'Предстоящих пар нет',parallelClasses:'Занятий в это время: {n}',viewDay:'День',viewWeek:'Неделя',plannerViews:'Вид расписания',slotHeader:'Пара',emptyWeek:'На этой неделе занятий нет'},
+ en:{upcomingClass:'Upcoming class',openUpcoming:'View day schedule',noUpcoming:'No upcoming classes',parallelClasses:'Classes at this time: {n}',viewDay:'Day',viewWeek:'Week',plannerViews:'Timetable view',slotHeader:'Class',emptyWeek:'No classes this week'},
+ es:{upcomingClass:'Próxima clase',openUpcoming:'Ver horario del día',noUpcoming:'No hay próximas clases',parallelClasses:'Clases a esta hora: {n}',viewDay:'Día',viewWeek:'Semana',plannerViews:'Vista del horario',slotHeader:'Clase',emptyWeek:'No hay clases esta semana'},
+ fr:{upcomingClass:'Prochain cours',openUpcoming:'Voir le planning du jour',noUpcoming:'Aucun cours à venir',parallelClasses:'Cours à cette heure : {n}',viewDay:'Jour',viewWeek:'Semaine',plannerViews:'Vue du planning',slotHeader:'Cours',emptyWeek:'Aucun cours cette semaine'},
+ pt:{upcomingClass:'Próxima aula',openUpcoming:'Ver horário do dia',noUpcoming:'Não há aulas futuras',parallelClasses:'Aulas a esta hora: {n}',viewDay:'Dia',viewWeek:'Semana',plannerViews:'Vista do horário',slotHeader:'Aula',emptyWeek:'Sem aulas nesta semana'}
 };
 for(const [code,values] of Object.entries(UPCOMING_I18N))Object.assign(I18N[code],values);
 function uiIcon(name){
@@ -1297,13 +1268,14 @@ let lastCardMarkup='';
 function renderCards(animate=false){
  const rows=matchingRows(),c=ufaClock(),minutes=c.hour*60+c.minute,realWeek=semesterWeek(c),realDay=ufaDay(c);
  $('summaryCount').textContent=t('lessonsCount',{n:new Set(rows.map(row=>row[0]+':'+row[1]+':'+row[9])).size});
- $('lessonColumns').hidden=!rows.length;
  $('agendaEnd').hidden=!rows.length||!!state.query;
+ const hasSubgroups=DATA.groups[state.group].some(row=>Number(row[7])!==0);
  const markup=rows.length?rows.map((row,index)=>{
   const opened=state.openCard===rowId(row),actual=state.week===realWeek&&row[0]===realDay&&!state.query;
   const live=actual&&minutes>=toMinutes(row[9])&&minutes<toMinutes(row[10]);const past=actual&&minutes>=toMinutes(row[10]);
   const conflict=row[11]?.includes(state.week);
-  return lessonGap(rows,index)+`<article style="--stagger:${Math.min(index,5)*45}ms" class="card ${row[2]?'lec':'prac'} ${live?'live':''} ${past?'past':''}"><button class="card-button" data-action="expand" data-index="${index}" aria-expanded="${opened}"><span class="time-block"><b>${esc(row[9])}</b><small>${esc(row[10])}</small><span class="pair-no">${esc(t('pair',{n:row[1]}))}</span></span><span class="lesson-body"><span class="title">${esc(subject(row))}</span><span class="lesson-top"><span class="lesson-type">${esc(t(row[2]?'lecture':'practice'))}</span><span class="subgroup-label">${esc(row[7]?subgroupName(Number(row[7])):t('allGroups'))}</span>${state.query?`<span class="subgroup-label">${esc(I18N[state.lang].shortDays[row[0]-1])}</span>`:''}${live?`<span class="lesson-live">${esc(t('now'))}</span>`:''}${conflict?`<span class="subgroup-label" title="${esc(t('sourceConflict'))}">⚠ ${esc(t('sourceConflictShort'))}</span>`:''}</span><span class="lesson-meta">${esc(teacher(row)||t('noTeacher'))}</span></span><span class="lesson-room">${esc(room(row[4])||'—')}</span><span class="card-chevron" aria-hidden="true"></span></button>${opened?`<div class="detail"><p>${esc(t('teacher'))}: <b>${esc(teacher(row)||t('noTeacher'))}</b></p><p>${esc(t('weeks'))}: <b>${esc(formatWeek(row))}</b></p>${conflict?`<p>⚠️ ${esc(t('sourceConflict'))}</p>`:''}<label for="noteText">${esc(t('note'))}</label><input id="noteText" data-note-index="${index}" value="${esc(noteValue(row))}" placeholder="${esc(t('notePlaceholder'))}"><div class="lesson-tools"><button data-action="copyLesson" data-index="${index}">${uiIcon('copy')}${esc(t('copyLesson'))}</button></div><button class="report-issue" data-action="reportIssue" data-index="${index}">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`:''}</article>`;
+  const location=room(row[4]);
+  return lessonGap(rows,index)+`<article style="--stagger:${Math.min(index,5)*45}ms" class="card ${row[2]?'lec':'prac'} ${live?'live':''} ${past?'past':''}"><button class="card-button" data-action="expand" data-index="${index}" aria-expanded="${opened}"><span class="time-block"><b>${esc(row[9])}</b><small>${esc(row[10])}</small></span><span class="lesson-body"><span class="title">${esc(subject(row))}</span><span class="lesson-location"><span class="lesson-room ${location?'':'missing'}">${location?uiIcon('pin'):''}${esc(location||t('teacherRoomMissing'))}</span></span><span class="lesson-top"><span class="lesson-type">${esc(t(row[2]?'lecture':'practice'))}</span>${row[7]||hasSubgroups?`<span class="subgroup-label">${esc(row[7]?subgroupName(Number(row[7])):t('allGroups'))}</span>`:''}${state.query?`<span class="subgroup-label">${esc(I18N[state.lang].shortDays[row[0]-1])}</span>`:''}${live?`<span class="lesson-live">${esc(t('now'))}</span>`:''}${conflict?`<span class="subgroup-label" title="${esc(t('sourceConflict'))}">⚠ ${esc(t('sourceConflictShort'))}</span>`:''}</span></span><span class="card-chevron" aria-hidden="true">${uiIcon('chevronRight')}</span></button>${opened?`<div class="detail"><p>${esc(t('teacher'))}: <b>${esc(teacher(row)||t('noTeacher'))}</b></p><p>${esc(t('weeks'))}: <b>${esc(formatWeek(row))}</b></p>${conflict?`<p>⚠️ ${esc(t('sourceConflict'))}</p>`:''}<label for="noteText">${esc(t('note'))}</label><input id="noteText" data-note-index="${index}" value="${esc(noteValue(row))}" placeholder="${esc(t('notePlaceholder'))}"><div class="lesson-tools"><button data-action="copyLesson" data-index="${index}">${uiIcon('copy')}${esc(t('copyLesson'))}</button></div><button class="report-issue" data-action="reportIssue" data-index="${index}">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`:''}</article>`;
  }).join(''):`<div class="empty"><span class="empty-icon">${uiIcon('schedule')}</span><strong>${esc(t(state.query?'noSearch':'noLessons'))}</strong><span>${esc(t('noLessonsHint'))}</span>${!state.query?`<button class="primary" data-action="nextTeachingDay">${esc(t('nextTeachingDay'))}</button>`:''}<button class="report-issue" data-action="reportIssue">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`;
  const cards=$('cards');if(lastCardMarkup!==markup){lastCardMarkup=markup;cards.classList.toggle('is-changing',animate);cards.innerHTML=markup}
  renderDaySummary(rows);syncJumpToCurrent();
@@ -1656,7 +1628,7 @@ document.addEventListener('keydown',event=>{
  if(event.key==='Escape'&&overlay===$('modal')){event.preventDefault();closeModal();return}
  if(event.key==='Tab'){const items=[...overlay.querySelectorAll('button:not([disabled]),input,select,textarea,a[href],[tabindex="0"]')].filter(el=>!el.hidden&&el.getClientRects().length);if(!items.length)return;const first=items[0],last=items[items.length-1];if(event.shiftKey&&(document.activeElement===first||!items.includes(document.activeElement))){event.preventDefault();last.focus()}else if(!event.shiftKey&&(document.activeElement===last||!items.includes(document.activeElement))){event.preventDefault();first.focus()}}
 });
-const APP_RELEASE='2026-11-21.2';
+const APP_RELEASE='2026-11-21.3';
 const SCHEDULE_RELEASE='2026-10-27';
 const SUPPORT_LINKS={telegram:'https://t.me/csenchis',max:'https://max.ru/u/f9LHodD0cOLBig0ncSmZu-eTLwPD-Hm-RjLt9f2f7IFpYJJtNziGpqJPshc'};
 const jsonRead=(key,fallback)=>{try{return JSON.parse(read(key))??fallback}catch{return fallback}};
@@ -1673,6 +1645,7 @@ if(DATA.groups[read('bash_grp')]&&!read('bash_subgroups_migrated_v2')&&state.sub
 state.subgroup=Object.hasOwn(state.subgroupPrefs,state.group)?validSubgroup(state.subgroupPrefs[state.group]):validSubgroup(state.subgroup);
 state.textSize=read('bash_text_size_v1')==='large'?'large':'comfortable';
 const READY_THEMES=[
+ {id:'focus',names:['Темп','Focus','Enfoque','Clarté','Foco'],bg:'#f2f6f6',a:'#086669',icon:'#086669',calendar:'#086669',lec:'#435aa5',prac:'#16756a',indicator:'#e78b48'},
  {id:'notice',names:['Афиша','Notice','Cartel','Affiche','Cartaz'],bg:'#f5f0e4',a:'#1a36c6',icon:'#203eab',calendar:'#1a36c6',lec:'#a24a1b',prac:'#203eab',indicator:'#d07822'},
  {id:'planner',names:['Планер','Planner','Agenda','Planning','Agenda'],bg:'#f7f3ef',a:'#5b3cce',icon:'#5b3cce',calendar:'#5b3cce',lec:'#b64f20',prac:'#6145bc',indicator:'#e06938'},
  {id:'campus',names:['Кампус','Campus','Campus','Campus','Campus'],bg:'#f1f4e9',a:'#55774c',icon:'#55774c',calendar:'#d9ef9f',indicator:'#abcf51'},
@@ -1690,6 +1663,26 @@ const READY_THEMES=[
  {id:'latte',names:['Латте','Latte','Latte','Latte','Latte'],bg:'#f4ece0',a:'#805837',lec:'#7258a5',prac:'#316d59',indicator:'#aa3853',fresh:true},
  {id:'sunset',names:['Закат','Sunset','Atardecer','Crépuscule','Pôr do sol'],bg:'#29182c',a:'#ffac82',lec:'#d9b5ff',prac:'#ffc59f',indicator:'#73e0cf',fresh:true}
 ];
+const SYSTEM_PALETTES={
+ focus:{
+  light:{background:'#f2f6f6',surface:'#ffffff',secondary:'#e4efee',accent:'#086669'},
+  dark:{background:'#101b20',surface:'#16262d',secondary:'#244048',accent:'#80dcd3'}
+ },
+ notice:{
+  light:{background:'#f5f0e4',surface:'#faf6eb',secondary:'#ede5d5',accent:'#1a36c6'},
+  dark:{background:'#151926',surface:'#202638',secondary:'#2a334b',accent:'#94acff'}
+ },
+ planner:{
+  light:{background:'#f7f3ef',surface:'#fffdfa',secondary:'#f0e9fa',accent:'#5b3cce'},
+  dark:{background:'#1d1829',surface:'#272136',secondary:'#332948',accent:'#b49afb'}
+ },
+ campus:{
+  light:{background:'#f1f4e9',surface:'#fafbf5',secondary:'#e7eddc',accent:'#365c3a'},
+  dark:{background:'#101a15',surface:'#19271e',secondary:'#25372a',accent:'#c6e78b'}
+ },
+ graphite:{light:{background:'#f3f4f6'},dark:{background:'#171a1f'}}
+};
+const themeMode=p=>p.mode==='dark'||p.mode==='system'&&(deviceTheme?.matches??true)?'dark':'light';
 const READY_COPY={ru:['Готовые темы','Выберите палитру. Размер текста и эффекты сохранятся.','Новая','Настройки интерфейса','Тема применена'],en:['Ready-made themes','Choose a palette. Text size and effects stay as you set them.','New','Interface settings','Theme applied'],es:['Temas prediseñados','Elige una paleta. Se conservan el tamaño del texto y los efectos.','Nuevo','Ajustes de interfaz','Tema aplicado'],fr:['Thèmes prédéfinis','Choisissez une palette. La taille du texte et les effets sont conservés.','Nouveau','Réglages de l’interface','Thème appliqué'],pt:['Temas prontos','Escolha uma paleta. O tamanho do texto e os efeitos são mantidos.','Novo','Configurações da interface','Tema aplicado']};
 function readyText(index){return (READY_COPY[state.lang]||READY_COPY.ru)[index]}
 function readyThemeName(p){return p.names[Math.max(0,['ru','en','es','fr','pt'].indexOf(state.lang))]}
@@ -1697,27 +1690,23 @@ function readyThemeMarkup(){return `<button class="ready-launch" data-action="re
 function toggleReadyThemes(){state.readyThemesOpen=!state.readyThemesOpen;const gallery=$('readyThemeGallery');gallery.hidden=!state.readyThemesOpen;document.querySelector('[data-action="readyThemes"]').setAttribute('aria-expanded',String(state.readyThemesOpen));if(state.readyThemesOpen)gallery.querySelector('button')?.focus({preventScroll:true})}
 function applyReadyTheme(id){
  const p=READY_THEMES.find(item=>item.id===id);if(!p)return;
- const colors={background:p.bg,iconColor:p.icon||p.a,calendarColor:p.calendar||p.a,indicatorColor:p.indicator,mode:['notice','planner','campus','graphite'].includes(id)?'system':'custom'};
+ const colors={background:p.bg,iconColor:p.icon||p.a,calendarColor:p.calendar||p.a,indicatorColor:p.indicator,mode:Object.hasOwn(SYSTEM_PALETTES,id)?'system':'custom'};
  state.appearance=normalizeAppearance({...state.appearance,...colors,preset:id,paletteSaturation:100,indicatorSaturation:100});jsonSave('bash_appearance_v1',state.appearance);themeApply();
  const scroll=$('modalBody').scrollTop;renderAppearanceSettings();$('modalBody').scrollTop=scroll;document.querySelector(`[data-action="applyReadyTheme"][data-value="${id}"]`)?.focus({preventScroll:true});toast(readyText(4));
 }
 
-const APPEARANCE_DEFAULTS={preset:'notice',density:'comfortable',paletteSaturation:100,fontSize:100,background:'#f5f0e4',iconColor:'#203eab',calendarColor:'#1a36c6',indicatorSaturation:100,indicatorColor:'#d07822',mode:'system',motion:true,glass:false,shadows:true,backgroundEffect:'none',effectIntensity:60,effectSpeed:100,effectMotion:'auto'};
+const APPEARANCE_DEFAULTS={preset:'focus',density:'comfortable',paletteSaturation:100,fontSize:100,background:'#f2f6f6',iconColor:'#086669',calendarColor:'#086669',indicatorSaturation:100,indicatorColor:'#e78b48',mode:'system',motion:true,glass:false,shadows:true,backgroundEffect:'none',effectIntensity:60,effectSpeed:100,effectMotion:'auto'};
 const deviceTheme=window.matchMedia?.('(prefers-color-scheme: dark)');
 function appearanceBackground(p=state.appearance){
  if(p.mode==='custom')return p.background;
- const dark=p.mode==='dark'||p.mode==='system'&&(deviceTheme?.matches??true);
- if(p.preset==='notice')return dark?'#151926':'#f5f0e4';
- if(p.preset==='planner')return dark?'#1d1829':'#f7f3ef';
- if(p.preset==='campus')return dark?'#101a15':'#f1f4e9';
- return dark?'#171a1f':'#f3f4f6';
+ return (SYSTEM_PALETTES[p.preset]||SYSTEM_PALETTES.graphite)[themeMode(p)].background;
 }
 function normalizeAppearance(value){
  const v=value&&typeof value==='object'&&!Array.isArray(value)?value:{};
  const color=(key)=>/^#[0-9a-f]{6}$/i.test(v[key]||'')?v[key].toLowerCase():APPEARANCE_DEFAULTS[key];
  const n=Number(v.fontSize),saturation=Number(v.indicatorSaturation),density=Number(v.effectIntensity),speed=Number(v.effectSpeed);
  const preset=READY_THEMES.some(p=>p.id===v.preset)?v.preset:!v.background?APPEARANCE_DEFAULTS.preset:'custom';
- const mode=['system','light','dark','custom'].includes(v.mode)?v.mode:!['#171a1f','#f1f4e9','#f7f3ef',APPEARANCE_DEFAULTS.background].includes(color('background'))?'custom':'system';
+ const mode=['system','light','dark','custom'].includes(v.mode)?v.mode:!['#171a1f','#f1f4e9','#f7f3ef','#f5f0e4',APPEARANCE_DEFAULTS.background].includes(color('background'))?'custom':'system';
  return {preset,density:['comfortable','compact'].includes(v.density)?v.density:'comfortable',paletteSaturation:Number.isFinite(Number(v.paletteSaturation))?Math.max(0,Math.min(150,Math.round(Number(v.paletteSaturation)/10)*10)):100,effectSpeed:Number.isFinite(speed)?Math.max(50,Math.min(150,Math.round(speed/10)*10)):100,effectMotion:['auto','animated','still'].includes(v.effectMotion)?v.effectMotion:'auto',backgroundEffect:['none','snow','wheat','aurora','waves','stars'].includes(v.backgroundEffect)?v.backgroundEffect:'none',effectIntensity:Number.isFinite(density)?Math.max(20,Math.min(100,Math.round(density/10)*10)):60,fontSize:Number.isFinite(n)?Math.max(100,Math.min(130,Math.round(n/5)*5)):100,indicatorSaturation:Number.isFinite(saturation)?Math.max(0,Math.min(200,Math.round(saturation/10)*10)):100,background:color('background'),iconColor:color('iconColor'),calendarColor:color('calendarColor'),indicatorColor:color('indicatorColor'),mode,...Object.fromEntries(['motion','glass','shadows'].map(key=>[key,typeof v[key]==='boolean'?v[key]:APPEARANCE_DEFAULTS[key]]))};
 }
 function rgbColor(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16))}
@@ -1739,12 +1728,10 @@ function applyAppearance(){
  const light=colorContrast('#000000',bg)>colorContrast('#ffffff',bg),toward=light?'#000000':'#ffffff',ink=contrastColor(light?'#15181d':'#f5f6f8',bg,4.5);
  const safeSurface=amount=>{const c=mixColor(bg,toward,amount);return colorContrast(ink,c)>=4.5?c:bg};
  const preset=READY_THEMES.find(item=>item.id===p.preset&&item.id!=='graphite');
- const campus=p.preset==='campus'&&p.mode!=='custom';
- const planner=p.preset==='planner'&&p.mode!=='custom';
- const notice=p.preset==='notice'&&p.mode!=='custom';
- const surface=notice?(light?'#faf6eb':'#202638'):planner?(light?'#fffdfa':'#272136'):campus?(light?'#fafbf5':'#19271e'):p.preset==='amoled'?'#111111':safeSurface(.04);
- const surface2=notice?(light?'#ede5d5':'#2a334b'):planner?(light?'#f0e9fa':'#332948'):campus?(light?'#e7eddc':'#25372a'):safeSurface(.085);
- const baseAccent=notice?(light?'#1a36c6':'#94acff'):planner?(light?'#5b3cce':'#b49afb'):campus?(light?'#365c3a':'#c6e78b'):preset?preset.a:light?'#365e8b':'#a8bdd8';
+ const palette=p.mode==='custom'?null:SYSTEM_PALETTES[p.preset]?.[themeMode(p)];
+ const surface=palette?.surface??(p.preset==='amoled'?'#111111':safeSurface(.04));
+ const surface2=palette?.secondary??safeSurface(.085);
+ const baseAccent=palette?.accent??preset?.a??(light?'#365e8b':'#a8bdd8');
  const accent=contrastColor(saturateIndicator(baseAccent,p.paletteSaturation),surface2,3);
  const calendarColor=saturateIndicator(p.calendarColor,p.paletteSaturation),iconBase=saturateIndicator(p.iconColor,p.paletteSaturation);
  const calendarSurface=mixColor(bg,calendarColor,light ? .12 : .16),calendarInk=contrastColor(ink,calendarSurface,4.5);
@@ -1758,7 +1745,7 @@ function applyAppearance(){
 function updateAppearance(key,value){
  if(!Object.hasOwn(APPEARANCE_DEFAULTS,key))return;
  const editsColor=['background','iconColor','calendarColor'].includes(key);
- const changesPreset=editsColor||key==='mode'&&!['notice','planner','campus','graphite'].includes(state.appearance.preset);
+ const changesPreset=editsColor||key==='mode'&&!Object.hasOwn(SYSTEM_PALETTES,state.appearance.preset);
  state.appearance=normalizeAppearance({...state.appearance,[key]:value,...(changesPreset?{preset:'custom'}:{}),...(key==='background'?{mode:'custom'}:{})});jsonSave('bash_appearance_v1',state.appearance);themeApply();
  if(!state.appearance.motion)document.getAnimations?.().forEach(animation=>animation.cancel());
  syncAppearanceControls();
@@ -1928,7 +1915,7 @@ const backgroundEffects=(()=>{
   const isWheat=p.backgroundEffect==='wheat';
   return {canvas:element,ctx,width,height,key,preview,particles:Array.from({length:count},(_,i)=>({x:((i*.6180339+.17)%1)*width,y:((i*.381966+.31)%1)*height,size:isWheat?19+(i%7)*2:1.3+(i%5)*.45,speed:18+(i%9)*4,phase:i*2.39,rotation:i*.6,spin:((i%5)-2)*.08,crystal:i%4===0,opacity:.35+(i%6)*.08}))};
  }
- const protectedSelectors='.site-bar,.masthead,.workspace-foot,.update-banner,.quick-groups,.planner-board,.current-panel,.load-details,.footer,.jump-current';
+ const protectedSelectors='.site-bar,.workspace-foot,.update-banner,.quick-groups,.planner-board,.current-panel,.load-details,.footer,.jump-current';
  function protectedAreas(scene){
   if(scene.mask)return scene.mask;
   const root=scene.preview?scene.canvas.closest('.theme-demo'):document,origin=scene.preview?scene.canvas.getBoundingClientRect():{left:0,top:0};
