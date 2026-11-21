@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f2f6f6">
-<meta name="app-version" content="2026-11-21.3">
+<meta name="app-version" content="2026-11-21.4">
 <meta name="schedule-version" content="2026-10-27">
 <meta name="description" content="Расписание БашГАУ: все группы, подгруппы, актуальные недели и офлайн-доступ.">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -915,6 +915,59 @@ html[data-density=compact] .focus-app .card-button{padding-block:7px}
  .footer .credit{bottom:1px}
 }
 
+.desktop-columns{display:none}
+@media(min-width:1024px){
+ .focus-app .workspace,.focus-app .site-bar-inner{width:min(100%,1450px);padding-inline:clamp(24px,3.1vw,55px)}
+ .focus-app .workspace{padding-block:22px 26px}
+ .schedule-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(285px,320px);gap:20px;align-items:start}
+ .schedule-layout:has(#weekGrid:not([hidden])){grid-template-columns:minmax(0,1fr)}
+ .focus-app .planner-board{padding:15px;background:var(--s);border:1px solid var(--l);border-radius:16px}
+ .focus-app .board-controls{margin-bottom:9px}
+ .focus-app .day-nav button,.focus-app .day-nav button.on{min-height:50px}
+ .focus-app .agenda{--row-columns:90px minmax(0,1fr) minmax(125px,165px) 16px;--row-gap:11px;padding-top:15px}
+ .focus-app .agenda-heading{margin-bottom:10px}
+ .desktop-columns{
+  display:grid;grid-template-columns:var(--row-columns);gap:var(--row-gap);padding:8px 10px;
+  border-radius:8px 8px 0 0;background:var(--s2);color:var(--m);font-size:calc(11px * var(--text-scale));font-weight:650;
+ }
+ .focus-app .cards{gap:0}
+ .focus-app .card,.focus-app .card:hover{border:0;border-bottom:1px solid var(--l);border-radius:0}
+ .focus-app .card.live{border-bottom:2px solid var(--indicator-color)}
+ .focus-app .card-button,html[data-density=compact] .focus-app .card-button{
+  grid-template-columns:var(--row-columns);grid-template-rows:auto auto;column-gap:var(--row-gap);row-gap:4px;padding:11px 10px;border-radius:0;
+ }
+ .focus-app .card-button[aria-expanded=true]{background:color-mix(in srgb,var(--a) 10%,var(--s))}
+ .focus-app .time-block,html[data-density=compact] .focus-app .time-block{grid-row:1 / 3;gap:2px;border:0}
+ .focus-app .time-block b{font-size:calc(23px * var(--text-scale))}
+ .focus-app .lesson-body{display:contents}
+ .focus-app .title{grid-column:2;grid-row:1;font-size:calc(16px * var(--text-scale))}
+ .focus-app .lesson-top{grid-column:2;grid-row:2}
+ .focus-app .lesson-location{grid-column:3;grid-row:1 / 3}
+ .focus-app .card-chevron{grid-column:4;grid-row:1 / 3}
+ .focus-app .card-button[aria-expanded=true] .card-chevron{transform:none}
+ .focus-app .lesson-gap{padding:3px 10px}
+ .focus-app .agenda-end{margin-top:14px}
+ .desktop-context{display:grid;gap:12px;min-width:0}
+ .focus-app .desktop-context .current-panel{
+  display:grid;gap:8px;margin:0;padding:15px;border-radius:15px;
+  background:color-mix(in srgb,var(--a) 8%,var(--s));
+ }
+ .focus-app .desktop-context .status-text{flex-direction:column;align-items:flex-start;gap:6px}
+ .focus-app .desktop-context .status-subject{font-size:calc(17px * var(--text-scale));line-height:1.25}
+ .focus-app .desktop-context .status-meta{font-size:calc(12px * var(--text-scale))}
+ .focus-app .desktop-context .status-action{width:fit-content;font-size:calc(12px * var(--text-scale))}
+ .lesson-inspector{min-width:0;padding:15px;border:1px solid var(--l);border-radius:15px;background:var(--s)}
+ .inspector-kind{margin:0;font-size:calc(11px * var(--text-scale));font-weight:650;color:var(--m)}
+ .inspector-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}
+ .inspector-heading h2{margin:4px 0 0;font-size:calc(19px * var(--text-scale));line-height:1.2;overflow-wrap:anywhere;letter-spacing:-.04em}
+ .inspector-heading .icon{width:36px;height:36px;min-width:36px;border:0;border-radius:8px;background:var(--s2);font-size:16px}
+ .inspector-location{display:flex;gap:5px 11px;flex-wrap:wrap;margin:8px 0 0;color:var(--m);font-size:calc(12px * var(--text-scale))}
+ .inspector-location>span{display:inline-flex;align-items:center;gap:4px;overflow-wrap:anywhere}
+ .inspector-location .ui-icon{width:14px;height:14px;color:var(--a)}
+ .focus-app .lesson-inspector .detail{margin-top:10px;padding:9px 0 0}
+ .focus-app .lesson-inspector .lesson-tools{margin-top:7px}
+ .schedule-layout:has(#weekGrid:not([hidden])) .desktop-context{width:min(100%,440px)}
+}
 </style>
 </head>
 <body>
@@ -940,6 +993,7 @@ html[data-density=compact] .focus-app .card-button{padding-block:7px}
   <main class="workspace">
     <nav class="quick-groups" id="quickGroups" hidden></nav>
     <div class="update-banner" id="updateBanner" hidden><button id="updateDetails" data-action="updates"></button><button class="icon" id="dismissUpdate" data-action="dismissUpdate">✕</button></div>
+    <div class="schedule-layout">
       <section class="planner-board" aria-label="Расписание" id="plannerBoard">
         <div class="board-controls">
           <div class="weekbar">
@@ -968,11 +1022,23 @@ html[data-density=compact] .focus-app .card-button{padding-block:7px}
         <div class="week-scroll" id="weekGrid" hidden></div>
         <section class="agenda" id="dailyAgenda">
           <div class="agenda-heading"><div class="summary"><h2 id="summaryTitle"></h2><span id="summaryCount"></span></div></div>
+          <div class="desktop-columns" id="desktopColumns" hidden>
+            <span data-i18n="listTime"></span><span data-i18n="subject"></span><span data-i18n="room"></span>
+          </div>
           <section class="cards" id="cards" aria-live="polite"></section>
           <div class="agenda-end" id="agendaEnd" data-i18n="dayEnd"></div>
         </section>
       </section>
-    <section class="current-panel" aria-labelledby="statusLabel">
+      <aside class="desktop-context">
+        <section class="lesson-inspector" id="lessonInspector" aria-labelledby="inspectorTitle" hidden>
+          <div class="inspector-heading">
+            <div><p class="inspector-kind" id="inspectorKind"></p><h2 id="inspectorTitle" tabindex="-1"></h2></div>
+            <button class="icon" id="closeInspector" data-action="closeLesson">✕</button>
+          </div>
+          <div class="inspector-location" id="inspectorLocation"></div>
+          <div id="inspectorBody"></div>
+        </section>
+        <section class="current-panel" aria-labelledby="statusLabel">
           <div class="status" id="status"><div class="status-text">
             <b id="statusLabel"></b>
             <strong class="status-subject" id="statusSubject" hidden></strong>
@@ -987,7 +1053,9 @@ html[data-density=compact] .focus-app .card-button{padding-block:7px}
             <span class="ufa-time" id="statusUfa" data-i18n="ufaTime" hidden></span>
           </div></div>
           <button class="text-link status-action" id="statusAction" data-action="openUpcoming" hidden><span data-i18n="openUpcoming"></span><span data-icon="arrowUpRight"></span></button>
-    </section>
+        </section>
+      </aside>
+    </div>
     <footer class="workspace-foot">
       <div class="utility-strip">
         <button class="offline-pill" id="offlineShortcut" data-action="offline" aria-haspopup="dialog"><i aria-hidden="true"></i><span class="offline-symbol" data-icon="offline"></span><span id="offlineLabel"></span></button>
@@ -1084,6 +1152,7 @@ const UPCOMING_I18N={
  pt:{upcomingClass:'Próxima aula',openUpcoming:'Ver horário do dia',noUpcoming:'Não há aulas futuras',parallelClasses:'Aulas a esta hora: {n}',viewDay:'Dia',viewWeek:'Semana',plannerViews:'Vista do horário',slotHeader:'Aula',emptyWeek:'Sem aulas nesta semana'}
 };
 for(const [code,values] of Object.entries(UPCOMING_I18N))Object.assign(I18N[code],values);
+for(const [code,label] of Object.entries({ru:'Время',en:'Time',es:'Hora',fr:'Heure',pt:'Hora'}))I18N[code].listTime=label;
 function uiIcon(name){
  const aliases={'🎯':'today','🗓':'week','↗':'share','☰':'menu','👨‍🏫':'teachers','📌':'notes','🔔':'bells','📋':'copy','⬇':'download','◉':'offline'};
  const shapes={sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',moon:'<path d="M21 13a9 9 0 0 1-10-10A9 9 0 1 0 21 13Z"/>',verified:'<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/>',flag:'<path d="M5 21V3m0 1c5-4 9 4 14 0v10c-5 4-9-4-14 0"/>',refresh:'<path d="M20 7v5h-5M4 17v-5h5M5.5 7a7 7 0 0 1 11.6-2L20 8M4 16l2.9 3A7 7 0 0 0 18.5 17"/>',snow:'<path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M9 4l3 3 3-3M9 20l3-3 3 3M4 10l4-1-1-4m13 9-4 1 1 4M4 14l4 1-1 4M20 10l-4-1 1-4"/>',wheat:'<path d="M12 22V7m0 0c-4 0-6-3-6-5 4 0 6 2 6 5Zm0 5c-4 0-7-3-7-5 4 0 7 2 7 5Zm0 5c-4 0-7-3-7-5 4 0 7 2 7 5Zm0-10c4 0 6-3 6-5-4 0-6 2-6 5Zm0 5c4 0 7-3 7-5-4 0-7 2-7 5Zm0 5c4 0 7-3 7-5-4 0-7 2-7 5Z"/>',none:'<circle cx="12" cy="12" r="9"/><path d="m6 6 12 12"/>',star:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4V3Z"/>',support:'<path d="M4 14v-3a8 8 0 0 1 16 0v3M4 11H3v6h4v-6H4Zm16 0h1v6h-4v-6h3Zm0 6c0 3-3 4-8 4"/>',schedule:'<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M9 9v12m5-7h3m-3 3h3"/>',groups:'<path d="m3 8 9-5 9 5-9 5-9-5Zm4 3v6l5 3 5-3v-6m4-3v9"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',chevronRight:'<path d="m9 5 7 7-7 7"/>',chevronLeft:'<path d="m15 5-7 7 7 7"/>',chevronDown:'<path d="m5 9 7 7 7-7"/>',arrowUpRight:'<path d="M6 18 18 6M6 6h12v12"/>',person:'<circle cx="12" cy="7" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',pin:'<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',globe:'<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>',palette:'<path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-4c-1-1 0-2 1-2h2a4 4 0 0 0 4-4 9 9 0 0 0-9-8Z"/><path d="M7 10h.01M10 6.5h.01M15 7h.01M18 11h.01" stroke-width="3"/>',settings:'<path d="M3 6h18M3 12h18M3 18h18"/><circle cx="8" cy="6" r="2" fill="var(--bg)"/><circle cx="16" cy="12" r="2" fill="var(--bg)"/><circle cx="10" cy="18" r="2" fill="var(--bg)"/>',today:'<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/>',week:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h1m6 0h1m-8 3h1m6 0h1"/>',share:'<path d="M12 15V3m-4 4 4-4 4 4M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/>',menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',teachers:'<circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m3-15a3 3 0 0 1 0 6m0 3a5 5 0 0 1 3 4v2"/>',notes:'<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Zm0 0v6h6M8 13h8m-8 4h5"/>',bells:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-9 13h6"/>',copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>',download:'<path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/>',offline:'<path d="M7 16a4 4 0 0 1-1-8 6 6 0 0 1 11-1 4.5 4.5 0 0 1 1 9m-10 3 3 3 6-7"/>'};
@@ -1201,6 +1270,7 @@ function render(animate=false){
  $('plannerBoard').setAttribute('aria-label',t('app'));
  $('viewToggle').setAttribute('aria-label',t('plannerViews'));
  $('themeButton').setAttribute('aria-label',t('themeSettings'));
+ $('closeInspector').setAttribute('aria-label',t('closed'));
  $('searchButton').setAttribute('aria-label',t('search'));$('menuButton').setAttribute('aria-label',t('menu'));$('searchButton').innerHTML=uiIcon('search');$('menuButton').innerHTML=uiIcon('menu');$('searchFieldIcon').innerHTML=uiIcon('search');
  $('groupButton').innerHTML=`<span class="group-monogram">${uiIcon('groups')}</span><span class="group-copy"><strong>${esc(DATA.labels[state.group])}</strong><small>${esc(t(groupInfo(state.group).education))} · ${esc(t('course',{n:groupInfo(state.group).course}))} · ${esc(t(modeKey(groupInfo(state.group).mode)))}</small></span><span class="chevron">${uiIcon('chevronDown')}</span>`;
  $('groupButton').setAttribute('aria-label',t('chooseGroup')+' · '+DATA.labels[state.group]);
@@ -1264,9 +1334,41 @@ function renderStatus(){
  $('statusAction').hidden=!row;
 }
 const clockCountdown=secs=>String(Math.floor(Math.max(0,secs)/3600)).padStart(2,'0')+':'+String(Math.floor(Math.max(0,secs)%3600/60)).padStart(2,'0')+':'+String(Math.max(0,secs)%60).padStart(2,'0');
-let lastCardMarkup='';
+const desktopAgenda=matchMedia('(min-width: 1024px)');
+let lastCardMarkup='',lastInspectorMarkup='';
+function lessonDetails(row,index){
+ const conflict=row[11]?.includes(state.week);
+ return `<div class="detail">
+  <p>${esc(t('teacher'))}: <b>${esc(teacher(row)||t('noTeacher'))}</b></p>
+  <p>${esc(t('weeks'))}: <b>${esc(formatWeek(row))}</b></p>
+  ${conflict?`<p>⚠️ ${esc(t('sourceConflict'))}</p>`:''}
+  <label for="noteText">${esc(t('note'))}</label>
+  <input id="noteText" data-note-index="${index}" value="${esc(noteValue(row))}" placeholder="${esc(t('notePlaceholder'))}">
+  <div class="lesson-tools"><button data-action="copyLesson" data-index="${index}">${uiIcon('copy')}${esc(t('copyLesson'))}</button></div>
+  <button class="report-issue" data-action="reportIssue" data-index="${index}">${uiIcon('flag')}${esc(t('reportIssue'))}</button>
+ </div>`;
+}
+function renderInspector(row,index){
+ $('lessonInspector').hidden=!row;
+ const markup=row?lessonDetails(row,index):'';
+ if(lastInspectorMarkup!==markup){
+  lastInspectorMarkup=markup;
+  $('inspectorBody').innerHTML=markup;
+ }
+ if(!row)return;
+ $('inspectorKind').textContent=t('pair',{n:row[1]})+' · '+t(row[2]?'lecture':'practice');
+ $('inspectorTitle').textContent=subject(row);
+ $('inspectorLocation').innerHTML=`<span>${uiIcon('clock')}${esc(row[9]+'–'+row[10])}</span><span>${uiIcon('pin')}${esc(room(row[4])||t('teacherRoomMissing'))}</span>`;
+}
+desktopAgenda.addEventListener('change',()=>{
+ const noteHadFocus=document.activeElement?.id==='noteText';
+ renderCards();
+ if(noteHadFocus)$('noteText')?.focus({preventScroll:true});
+});
 function renderCards(animate=false){
  const rows=matchingRows(),c=ufaClock(),minutes=c.hour*60+c.minute,realWeek=semesterWeek(c),realDay=ufaDay(c);
+ const wide=desktopAgenda.matches,openIndex=rows.findIndex(row=>rowId(row)===state.openCard);
+ $('desktopColumns').hidden=!wide||!rows.length;
  $('summaryCount').textContent=t('lessonsCount',{n:new Set(rows.map(row=>row[0]+':'+row[1]+':'+row[9])).size});
  $('agendaEnd').hidden=!rows.length||!!state.query;
  const hasSubgroups=DATA.groups[state.group].some(row=>Number(row[7])!==0);
@@ -1275,9 +1377,10 @@ function renderCards(animate=false){
   const live=actual&&minutes>=toMinutes(row[9])&&minutes<toMinutes(row[10]);const past=actual&&minutes>=toMinutes(row[10]);
   const conflict=row[11]?.includes(state.week);
   const location=room(row[4]);
-  return lessonGap(rows,index)+`<article style="--stagger:${Math.min(index,5)*45}ms" class="card ${row[2]?'lec':'prac'} ${live?'live':''} ${past?'past':''}"><button class="card-button" data-action="expand" data-index="${index}" aria-expanded="${opened}"><span class="time-block"><b>${esc(row[9])}</b><small>${esc(row[10])}</small></span><span class="lesson-body"><span class="title">${esc(subject(row))}</span><span class="lesson-location"><span class="lesson-room ${location?'':'missing'}">${location?uiIcon('pin'):''}${esc(location||t('teacherRoomMissing'))}</span></span><span class="lesson-top"><span class="lesson-type">${esc(t(row[2]?'lecture':'practice'))}</span>${row[7]||hasSubgroups?`<span class="subgroup-label">${esc(row[7]?subgroupName(Number(row[7])):t('allGroups'))}</span>`:''}${state.query?`<span class="subgroup-label">${esc(I18N[state.lang].shortDays[row[0]-1])}</span>`:''}${live?`<span class="lesson-live">${esc(t('now'))}</span>`:''}${conflict?`<span class="subgroup-label" title="${esc(t('sourceConflict'))}">⚠ ${esc(t('sourceConflictShort'))}</span>`:''}</span></span><span class="card-chevron" aria-hidden="true">${uiIcon('chevronRight')}</span></button>${opened?`<div class="detail"><p>${esc(t('teacher'))}: <b>${esc(teacher(row)||t('noTeacher'))}</b></p><p>${esc(t('weeks'))}: <b>${esc(formatWeek(row))}</b></p>${conflict?`<p>⚠️ ${esc(t('sourceConflict'))}</p>`:''}<label for="noteText">${esc(t('note'))}</label><input id="noteText" data-note-index="${index}" value="${esc(noteValue(row))}" placeholder="${esc(t('notePlaceholder'))}"><div class="lesson-tools"><button data-action="copyLesson" data-index="${index}">${uiIcon('copy')}${esc(t('copyLesson'))}</button></div><button class="report-issue" data-action="reportIssue" data-index="${index}">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`:''}</article>`;
+  return lessonGap(rows,index)+`<article style="--stagger:${Math.min(index,5)*45}ms" class="card ${row[2]?'lec':'prac'} ${live?'live':''} ${past?'past':''}"><button class="card-button" data-action="expand" data-index="${index}" aria-expanded="${opened}"><span class="time-block"><b>${esc(row[9])}</b><small>${esc(row[10])}</small></span><span class="lesson-body"><span class="title">${esc(subject(row))}</span><span class="lesson-location"><span class="lesson-room ${location?'':'missing'}">${location?uiIcon('pin'):''}${esc(location||t('teacherRoomMissing'))}</span></span><span class="lesson-top"><span class="lesson-type">${esc(t(row[2]?'lecture':'practice'))}</span>${row[7]||hasSubgroups?`<span class="subgroup-label">${esc(row[7]?subgroupName(Number(row[7])):t('allGroups'))}</span>`:''}${state.query?`<span class="subgroup-label">${esc(I18N[state.lang].shortDays[row[0]-1])}</span>`:''}${live?`<span class="lesson-live">${esc(t('now'))}</span>`:''}${conflict?`<span class="subgroup-label" title="${esc(t('sourceConflict'))}">⚠ ${esc(t('sourceConflictShort'))}</span>`:''}</span></span><span class="card-chevron" aria-hidden="true">${uiIcon('chevronRight')}</span></button>${opened&&!wide?lessonDetails(row,index):''}</article>`;
  }).join(''):`<div class="empty"><span class="empty-icon">${uiIcon('schedule')}</span><strong>${esc(t(state.query?'noSearch':'noLessons'))}</strong><span>${esc(t('noLessonsHint'))}</span>${!state.query?`<button class="primary" data-action="nextTeachingDay">${esc(t('nextTeachingDay'))}</button>`:''}<button class="report-issue" data-action="reportIssue">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`;
  const cards=$('cards');if(lastCardMarkup!==markup){lastCardMarkup=markup;cards.classList.toggle('is-changing',animate);cards.innerHTML=markup}
+ renderInspector(wide&&plannerView()==='day'?rows[openIndex]:null,openIndex);
  renderDaySummary(rows);syncJumpToCurrent();
 }
 let modalCloseTimer=0,returnFocus=null;
@@ -1562,7 +1665,7 @@ document.addEventListener('click',async event=>{const target=event.target.closes
   const day=Number(target.dataset.day),index=Number(target.dataset.index);
   const row=matchingRows(state.week,day,'')[index];if(!row)break;
   showTeachingDay(state.week,day,row);
-  focusAgenda($('cards').querySelector(`[data-index="${index}"]`));
+  focusAgenda($('lessonInspector').hidden?$('cards').querySelector(`[data-index="${index}"]`):$('inspectorTitle'));
   break;
  }
  case 'openUpcoming':{
@@ -1596,7 +1699,21 @@ document.addEventListener('click',async event=>{const target=event.target.closes
   break;
  }
  case 'clearSearch':state.query='';$('lessonSearch').value='';renderCards(true);$('summaryTitle').textContent=localeDate(dateOf(state.week,state.day));renderFilterSummary();break;
- case 'expand':{const rows=matchingRows();const row=rows[+target.dataset.index];state.openCard=row&&state.openCard!==rowId(row)?rowId(row):-1;renderCards();$('cards').querySelector(`[data-index="${target.dataset.index}"]`)?.focus({preventScroll:true});break}
+ case 'expand':{
+  const index=Number(target.dataset.index),row=matchingRows()[index];
+  state.openCard=row&&state.openCard!==rowId(row)?rowId(row):-1;
+  renderCards();
+  const focusTarget=$('lessonInspector').hidden?$('cards').querySelector(`[data-index="${index}"]`):$('inspectorTitle');
+  focusTarget?.focus({preventScroll:true});
+  break;
+ }
+ case 'closeLesson':{
+  const index=matchingRows().findIndex(row=>rowId(row)===state.openCard);
+  state.openCard=-1;
+  renderCards();
+  $('cards').querySelector(`[data-index="${index}"]`)?.focus({preventScroll:true});
+  break;
+ }
  case 'share':{const text=scheduleText();if(navigator.share)try{await navigator.share({title:t('app'),text})}catch{}else await copyText(text);break}
  case 'copy':await copyText(scheduleText());break;case 'copyText':await copyText(value);break;
  case 'teacherSchedule':openTeacherSchedule();break;
@@ -1628,7 +1745,7 @@ document.addEventListener('keydown',event=>{
  if(event.key==='Escape'&&overlay===$('modal')){event.preventDefault();closeModal();return}
  if(event.key==='Tab'){const items=[...overlay.querySelectorAll('button:not([disabled]),input,select,textarea,a[href],[tabindex="0"]')].filter(el=>!el.hidden&&el.getClientRects().length);if(!items.length)return;const first=items[0],last=items[items.length-1];if(event.shiftKey&&(document.activeElement===first||!items.includes(document.activeElement))){event.preventDefault();last.focus()}else if(!event.shiftKey&&(document.activeElement===last||!items.includes(document.activeElement))){event.preventDefault();first.focus()}}
 });
-const APP_RELEASE='2026-11-21.3';
+const APP_RELEASE='2026-11-21.4';
 const SCHEDULE_RELEASE='2026-10-27';
 const SUPPORT_LINKS={telegram:'https://t.me/csenchis',max:'https://max.ru/u/f9LHodD0cOLBig0ncSmZu-eTLwPD-Hm-RjLt9f2f7IFpYJJtNziGpqJPshc'};
 const jsonRead=(key,fallback)=>{try{return JSON.parse(read(key))??fallback}catch{return fallback}};
