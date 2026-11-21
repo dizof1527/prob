@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#211b32">
-<meta name="app-version" content="2026-11-21.1">
+<meta name="theme-color" content="#1a36c6">
+<meta name="app-version" content="2026-11-21.2">
 <meta name="schedule-version" content="2026-10-27">
 <meta name="description" content="Расписание БашГАУ: все группы, подгруппы, актуальные недели и офлайн-доступ.">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -699,279 +699,262 @@ html[data-motion=off] .card,html[data-motion=off] .detail,html[data-motion=off] 
 @media(prefers-reduced-motion:reduce){.ready-choice{transition:none}.ready-choice:hover{transform:none}}
 [data-motion=off] .ready-choice{transition:none;transform:none}
 
-/* Timetable planner */
-:root{font-synthesis:none}
-.planner-app{display:block;max-width:none}
-.planner-app,.planner-app button{font-family:"Segoe UI Variable","Segoe UI",system-ui,sans-serif}
-.planner-app .workspace,.planner-app .site-bar-inner{width:min(100%,1570px);max-width:none;margin-inline:auto;padding-inline:clamp(16px,3.25vw,54px)}
-.planner-app .workspace{padding-block:25px 24px}
-.planner-app .site-bar{background:#211b32;color:#fff;border-bottom:3px solid #ff956b}
-.site-bar-inner{display:flex;align-items:center;gap:28px;min-height:63px}
-.site-bar .brand{padding:0;gap:10px;flex:none}
-.site-bar .logo{width:36px;height:36px;border-radius:9px}
+/* Printed timetable */
+.notice-app{display:block;max-width:none;--display-font:Georgia,"Times New Roman",serif;--number-font:"Consolas","Courier New",monospace}
+.notice-app .workspace,.notice-app .site-bar-inner{width:min(100%,1420px);max-width:none;margin-inline:auto;padding-inline:clamp(16px,4.3vw,64px)}
+.notice-app .workspace{padding-block:0 24px}
+.notice-app .site-bar{position:sticky;top:0;z-index:3;background:var(--bg);border-bottom:1px solid var(--t)}
+.site-bar-inner{display:flex;align-items:center;gap:16px;min-height:57px}
+.site-bar .brand{padding:0;gap:8px;flex:none}
+.site-bar .logo{width:29px;height:29px;border-radius:0}
 .site-bar .brand>div:last-child{display:block}
-.site-bar .brand-wordmark{font-size:18px;letter-spacing:-.04em}
-.site-nav{display:flex;min-width:0;gap:3px}
-.site-nav .nav-item{color:#e7e1f2;min-height:42px;gap:7px;padding:8px 11px;white-space:nowrap;font-size:12px}
-.site-nav .nav-item>span{display:inline}
-.site-nav .nav-item.active{background:#ffffff19;color:#fff}
-.site-nav .nav-item.active::after{content:none}
-.site-nav .nav-item:hover{background:#ffffff19;color:#fff}
-.site-nav .nav-item .ui-icon,.site-actions .ui-icon{color:inherit}
-.site-nav .nav-item .ui-icon{width:16px;height:16px}
-.site-actions{margin-left:auto;display:flex;flex:none;gap:2px}
-.site-actions .icon{min-width:42px;height:42px;width:42px;border:0;border-radius:8px;background:none;color:#f2ebff}
-.site-actions .icon:hover{background:#ffffff19}
-.site-bar button:focus-visible{outline-color:#ffaf8d}
+.site-bar .brand-wordmark{font-size:17px;letter-spacing:-.035em}
+.site-actions{display:flex;gap:0;flex:none;margin-left:auto}
+.site-actions .icon{min-width:40px;width:40px;height:44px;border:0;border-radius:0;background:transparent;color:var(--t)}
+.site-actions .icon:hover{background:var(--s2)}
+.site-actions .ui-icon{width:19px;height:19px;color:inherit}
+.site-bar .freshness-shortcut{
+ display:flex;min-height:44px;max-width:100%;align-items:center;gap:7px;padding:3px 3px;
+ margin-left:auto;border:0;border-radius:0;background:none;color:var(--t);
+}
+.site-bar .freshness-shortcut>span:nth-child(2){display:block;min-width:0}
+.site-bar .freshness-shortcut strong{font-size:calc(13px * var(--text-scale));font-weight:650;line-height:1.3}
+.site-bar .freshness-shortcut small{display:none}
+.site-bar .freshness-shortcut>.ui-icon{width:13px;height:13px}
+.site-bar .freshness-shortcut:hover strong{text-decoration:underline;text-underline-offset:3px}
+.site-bar .freshness-dot{width:7px;height:7px;align-self:center}
 
-.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:19px}
-.masthead h1{font-size:calc(clamp(35px,4.7vw,66px) * var(--text-scale));font-weight:760;line-height:1;letter-spacing:-.075em;margin:0;overflow-wrap:anywhere}
-.masthead .eyebrow{margin:0 0 6px;font-size:11px;letter-spacing:.065em}
+.masthead{
+ display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:0 0 0;
+ padding:27px clamp(18px,4.2vw,60px) 30px;background:#1a36c6;color:#fff8e7;
+}
+.masthead-title{min-width:0}
+.masthead h1{
+ margin:0;font-family:var(--display-font);font-size:calc(clamp(42px,8.9vw,130px) * var(--text-scale));
+ line-height:.91;letter-spacing:-.062em;font-weight:400;overflow-wrap:anywhere;
+}
+.masthead .eyebrow{margin:0 0 10px;font-size:calc(11px * var(--text-scale));letter-spacing:.12em;color:inherit}
 .masthead .eyebrow::before{content:none}
-.group-switch{padding:7px 11px 7px 7px;min-height:53px;border:1px solid var(--l);border-radius:10px;background:var(--s);gap:8px;max-width:100%}
-.group-monogram{width:36px;height:36px;border:0;background:var(--s2);color:var(--a);border-radius:7px}
-.group-copy strong{font-size:calc(15px * var(--text-scale))}
-.group-copy small{font-size:calc(11px * var(--text-scale))}
-.group-switch .chevron{margin-left:auto;flex:none}
-.quick-groups{margin:-6px 0 10px;padding-bottom:4px}
-.update-banner{margin-block:0 12px}
+.masthead .group-switch{
+ background:#f9db62;color:#1d2240;border:0;border-radius:0;min-height:53px;max-width:100%;
+ padding:6px 8px 6px 7px;gap:8px;align-self:flex-end;
+}
+.masthead .group-switch:hover{background:#ffe783}
+.masthead .group-switch:focus-visible{outline-color:#fff8e7}
+.masthead .group-monogram{width:35px;height:35px;background:none;color:inherit;border:0;border-radius:0}
+.masthead .group-copy strong{font-size:calc(15px * var(--text-scale));line-height:1.2;color:inherit}
+.masthead .group-copy small{font-size:calc(11px * var(--text-scale));color:#282c49}
+.masthead .group-switch .chevron,.masthead .group-switch .ui-icon{color:inherit}
+.masthead .group-switch .chevron{margin-left:auto;flex:none}
+.notice-app .quick-groups{margin:0;padding:6px 0}
+.notice-app .quick-group{min-height:44px;border-radius:0}
+.notice-app .update-banner{margin:2px 0 0;border-radius:0}
 
-.planner-layout{display:grid;grid-template-columns:minmax(195px,218px) minmax(0,1fr);align-items:start;gap:18px}
-.planner-rail{display:grid;gap:12px;min-width:0}
-.planner-board{min-width:0;background:var(--s);border:1px solid var(--l);border-radius:13px}
-.board-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:12px;border-bottom:1px solid var(--l)}
-.board-controls .weekbar{display:flex;flex:0 1 auto;min-width:0;max-width:100%;margin:0;padding:0;gap:0;border-radius:8px;background:var(--s2);border:0;color:var(--t)}
-.board-controls .weekbar button{min-height:43px;min-width:43px}
-.board-controls .weekbar button:hover{background:color-mix(in srgb,var(--a) 15%,var(--s2))}
-.board-controls .weekbar .week-title{display:grid;gap:1px;padding:4px 7px;font-size:calc(13px * var(--text-scale));line-height:1.12}
+.notice-app .current-panel{
+ display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 16px;margin:0;padding:7px 0;
+ border:0;border-bottom:1px solid var(--l);border-radius:0;background:none;min-width:0;
+}
+.notice-app .current-panel::before{display:none}
+.notice-app .current-panel .status{margin:0;background:none;flex:1 1 490px}
+.notice-app .current-panel .status-text{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 10px;text-align:left}
+.notice-app .status b{padding:3px 6px;background:#f9db62;color:#1b1e2a;font-size:calc(10px * var(--text-scale));font-weight:750;letter-spacing:.055em;text-transform:uppercase}
+.notice-app .status.live b::before{flex:none}
+.status-subject{font-size:calc(15px * var(--text-scale));line-height:1.25;font-weight:700;overflow-wrap:anywhere}
+.status-location{display:flex;flex-wrap:wrap;gap:3px 9px}
+.status-location:has(>div[hidden]+div[hidden]){display:none}
+.notice-app .status-meta{display:flex;align-items:center;gap:4px;color:var(--m);font-size:calc(11px * var(--text-scale));overflow-wrap:anywhere}
+.notice-app .status-meta .ui-icon{width:12px;height:12px;color:inherit}
+.notice-app .countdown-row{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 6px;margin:0}
+.notice-app .countdown-row strong,.notice-app .status-clock{font:700 calc(14px * var(--text-scale))/1.15 var(--number-font);margin:0}
+.notice-app .countdown-row span,.notice-app .ufa-time{font-size:calc(10px * var(--text-scale));color:var(--m);margin:0}
+.notice-app .status-progress{align-self:center;width:min(10ch,16%);height:3px;margin:0}
+.notice-app .status-progress i{background:var(--indicator-color)}
+.notice-app .current-panel .status-action{
+ display:inline-flex;justify-content:flex-start;align-items:center;gap:5px;width:auto;min-height:44px;padding:2px 0;margin:0;
+ border:0;border-radius:0;color:var(--t);background:none;font-size:calc(12px * var(--text-scale));
+}
+.notice-app .status-action:hover span:first-child{text-decoration:underline;text-underline-offset:3px}
+.notice-app .status-action .ui-icon{width:14px;height:14px;color:inherit}
+
+.planner-board{min-width:0}
+.board-controls{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;padding:6px 0 4px}
+.board-controls .weekbar{display:flex;width:auto;min-width:0;max-width:100%;border:0;border-radius:0;margin:0;padding:0;gap:1px;background:none;color:var(--t)}
+.board-controls .weekbar button{min-height:44px;min-width:36px;border-radius:0}
+.board-controls .weekbar button:hover{background:var(--s2)}
+.board-controls .weekbar .week-title{display:grid;gap:1px;padding:2px 5px;font-size:calc(15px * var(--text-scale));line-height:1.15;text-align:left}
 .board-controls .week-title .week-type{font-size:calc(11px * var(--text-scale));color:var(--m);white-space:normal}
 .board-controls .weekbar .ui-icon{color:var(--t)}
-.board-controls .quick-today{display:flex;min-height:43px;border:1px solid var(--l);background:var(--s);border-radius:8px;padding-inline:8px;font-size:calc(12px * var(--text-scale))}
-.week-legend{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-inline:3px;font-size:calc(11px * var(--text-scale));color:var(--m)}
+.board-controls .quick-today{display:flex;min-height:44px;border:0;border-radius:0;background:none;padding:4px 6px;font-size:calc(12px * var(--text-scale))}
+.board-controls .quick-today:hover{background:var(--s2)}
+.view-toggle{display:flex;gap:4px;margin-left:auto;border-bottom:1px solid var(--l)}
+.view-toggle button{min-height:44px;padding:4px 11px;border:0;border-bottom:3px solid transparent;background:none;color:var(--m);font-size:calc(13px * var(--text-scale))}
+.view-toggle button[aria-pressed=true]{border-bottom-color:var(--a);color:var(--t)}
+.week-legend{display:flex;gap:5px 11px;align-items:center;flex-wrap:wrap;font-size:calc(11px * var(--text-scale));color:var(--m)}
 .week-legend span{display:flex;gap:5px;align-items:center}
-.week-legend span::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--lec)}
+.week-legend span::before{content:"";width:8px;height:2px;background:var(--lec)}
 .week-legend span:last-child::before{background:var(--prac)}
-.view-toggle{display:flex;gap:3px;padding:3px;margin-left:auto;background:var(--s2);border-radius:8px}
-.view-toggle button{border:0;background:transparent;color:var(--t);min-height:36px;border-radius:6px;padding:4px 11px;font-size:calc(12px * var(--text-scale));white-space:nowrap}
-.view-toggle button[aria-pressed=true]{background:var(--a);color:var(--ao);box-shadow:0 1px 5px #0002}
-.board-filters{display:flex;align-items:center;gap:9px 14px;flex-wrap:wrap;padding:9px 12px;border-bottom:1px solid var(--l)}
-.board-filters .subgroup-tools{width:auto;gap:7px}
-.board-filters .subgroups{padding:2px;border-radius:8px}
-.board-filters .subgroups button{min-height:36px;border-radius:6px}
-.board-filters .remember-filter{width:42px;height:42px;border-radius:8px}
+.board-filters{display:flex;align-items:center;gap:4px 12px;flex-wrap:wrap;padding:6px 0;border-top:1px solid var(--l)}
+.board-filters .subgroup-tools{width:auto;gap:5px}
+.board-filters .subgroups{padding:2px;border-radius:0}
+.board-filters .subgroups button,.board-filters .remember-filter{min-height:42px;border-radius:0}
 .board-filters .filter-summary{margin:0;padding:0;font-size:calc(12px * var(--text-scale))}
 
-.planner-rail .current-panel{
- --rail-ink:#fbf7ff;--rail-muted:#efe8ff;--rail-signal:#ffd0b6;
- display:flex;flex-direction:column;align-items:flex-start;gap:13px;min-width:0;margin:0;padding:16px;
- border:0;border-radius:12px;color:var(--rail-ink);
- background:linear-gradient(152deg,#5338ba,#34216e);
+.notice-app .day-nav{padding:0;border:1px solid var(--t);gap:0}
+.notice-app .day-nav button,.notice-app .day-nav button.on{
+ min-height:57px;padding:4px 1px;gap:1px;border:0;border-radius:0;border-right:1px solid var(--l);background:var(--bg);color:var(--t);box-shadow:none;
 }
-.planner-rail .current-panel::before{display:none}
-.current-panel .status{margin:0;background:none}
-.current-panel .status-text{display:flex;align-items:flex-start;gap:9px;text-align:left}
-.current-panel .status b{
- width:auto;align-self:flex-start;background:var(--rail-signal);color:#35204a;padding:4px 7px;
- border-radius:5px;font-size:calc(10px * var(--text-scale));font-weight:750;text-transform:uppercase;letter-spacing:.055em;line-height:1.3;
+.notice-app .day-nav button:last-child{border-right:0}
+.notice-app .day-nav button:hover{background:var(--s2)}
+.notice-app .day-nav button.on{background:var(--calendar-active,var(--a));color:var(--calendar-active-text,var(--ao))}
+.notice-app .day-nav button small{color:inherit;font:700 calc(21px * var(--text-scale))/1 var(--number-font)}
+.notice-app .day-nav button>span:first-child{font-size:calc(10px * var(--text-scale))}
+.notice-app .day-dots{gap:2px;margin:1px 0 0;min-height:6px}
+.notice-app .day-nav .day-dots i{width:3px;height:3px;background:currentColor}
+.notice-app .today-beacon{width:4px;height:4px;right:6px;top:6px}
+.notice-app .day-nav button:focus-visible{outline-offset:-3px}
+.notice-app .search-field{margin:7px 0;border-radius:0}
+.notice-app .agenda{padding:14px 0 0;--list-columns:clamp(84px,12vw,160px) minmax(0,1fr) clamp(88px,15vw,193px) 32px;--list-gap:12px}
+.agenda-heading{margin:0 0 9px}
+.notice-app .summary h2{
+ margin:0 0 4px;font:400 calc(clamp(28px,4vw,53px) * var(--text-scale))/1.07 var(--display-font);
+ letter-spacing:-.035em;text-transform:none;
 }
-.current-panel .status.live b::before{flex:none}
-.status-subject{font-size:calc(19px * var(--text-scale));line-height:1.18;font-weight:720;letter-spacing:-.025em;overflow-wrap:anywhere}
-.status-location{display:flex;flex-wrap:wrap;gap:4px 12px}
-.status-location:has(>div[hidden]+div[hidden]){display:none}
-.current-panel .status-meta{display:flex;align-items:center;gap:5px;color:var(--rail-muted);overflow-wrap:anywhere;font-size:calc(11px * var(--text-scale))}
-.current-panel .status-meta .ui-icon{width:13px;height:13px;color:inherit}
-.current-panel .countdown-row{display:flex;flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 7px;margin:0}
-.current-panel .countdown-row strong{font-size:calc(22px * var(--text-scale));font-weight:700;letter-spacing:-.04em}
-.current-panel .countdown-row span,.current-panel .ufa-time{margin:0;font-size:calc(11px * var(--text-scale));color:var(--rail-muted);text-align:left}
-.current-panel .status-clock{margin:0;font-size:calc(30px * var(--text-scale))}
-.current-panel .status-progress{width:100%;height:3px;margin:0;background:#ffffff45}
-.current-panel .status-progress i{background:var(--hero-indicator,var(--rail-signal))}
-.current-panel .status-action{display:inline-flex;align-items:center;gap:5px;width:fit-content;margin:0;min-height:40px;padding:5px 8px;border:1px solid #ffffff65;border-radius:6px;color:var(--rail-ink);font-size:calc(11px * var(--text-scale))}
-.current-panel .status-action:hover{background:#ffffff1a}
-.current-panel .status-action:focus-visible{outline-color:#ffbf99}
-.current-panel .status-action .ui-icon{width:13px;height:13px;color:inherit}
-.planner-rail .week-panel,.planner-rail .notes-cta{border-radius:12px;border:1px solid var(--l);background:var(--s)}
-.planner-rail .week-panel{padding:13px;box-shadow:none}
-.planner-rail .week-stat{margin-top:6px}
-.planner-rail .week-stat strong{font-size:33px}
-.planner-rail .week-chart{gap:3px}
-.planner-rail .week-chart button{min-width:0}
-.planner-rail .week-chart .bar{max-width:16px}
-.planner-rail .notes-cta{padding:12px;box-shadow:none;gap:7px}
-.planner-rail .notes-cta small{display:none}
+.notice-app .summary h2::first-letter{text-transform:uppercase}
+.notice-app .summary #summaryCount{font-size:calc(12px * var(--text-scale));color:var(--m)}
+.notice-app .summary .day-summary{display:inline-flex;margin-left:4px;flex-wrap:wrap;gap:3px}
+.notice-app .summary .day-summary span{font-size:calc(11px * var(--text-scale));background:none;border:0;color:var(--m);padding:0 3px}
+.lesson-columns{
+ display:grid;grid-template-columns:var(--list-columns);gap:var(--list-gap);padding:6px 0;border-block:1px solid var(--t);
+ color:var(--m);font-size:calc(10px * var(--text-scale));font-weight:650;letter-spacing:.12em;text-transform:uppercase;
+}
+.notice-app .cards{display:block}
+.notice-app .card,.notice-app .card:hover{
+ border:0;border-bottom:1px solid var(--l);border-radius:0;background:none;box-shadow:none;transform:none;overflow:visible;
+}
+.notice-app .card.live{border-bottom:2px solid var(--indicator-color)}
+.notice-app .card.live::after,.notice-app .card-button::before{content:none}
+.notice-app .card-button,html[data-density=compact] .notice-app .card-button{grid-template-columns:var(--list-columns);gap:var(--list-gap);min-height:0;padding:10px 0;border-radius:0}
+.notice-app .card-button:hover{background:var(--s2)}
+.notice-app .time-block,html[data-density=compact] .notice-app .time-block{
+ grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+ border:0;padding:0;font-family:var(--number-font);
+}
+.notice-app .time-block b{font-size:calc(clamp(18px,2.2vw,28px) * var(--text-scale));font-weight:700;line-height:1.04}
+.notice-app .time-block b::after{content:none}
+.notice-app .time-block small{font-size:calc(11px * var(--text-scale))}
+.notice-app .pair-no{margin:3px 0 0;padding:0;font-size:calc(9px * var(--text-scale))}
+.notice-app .lesson-body{grid-column:2;grid-row:1;gap:5px;align-self:center}
+.notice-app .title{font-size:calc(18px * var(--text-scale));line-height:1.2;letter-spacing:-.02em}
+.notice-app .lesson-top{gap:5px 9px}
+.notice-app .lesson-top .subgroup-label,.notice-app .lesson-type,.notice-app .lesson-live{
+ border:0;border-radius:0;background:none;padding:0;font-size:calc(10px * var(--text-scale));line-height:1.2;
+}
+.notice-app .lesson-type{color:var(--class-color);letter-spacing:.06em}
+.notice-app .lesson-meta{color:var(--m);font-size:calc(11px * var(--text-scale))}
+.notice-app .lesson-meta .ui-icon{display:none}
+.notice-app .lesson-room{grid-column:3;grid-row:1;align-self:center;font-size:calc(13px * var(--text-scale));font-weight:600;overflow-wrap:anywhere}
+.notice-app .card-chevron{grid-column:4;grid-row:1;align-self:center;font:400 23px/1 var(--number-font);color:var(--a)}
+.notice-app .card-chevron::before{content:"+"}
+.notice-app .card-button[aria-expanded=true] .card-chevron::before{content:"−"}
+.notice-app .detail{margin:0;padding:12px 6px;border-top:1px dashed var(--l)}
+.notice-app .lesson-gap{justify-content:flex-start;gap:7px;padding:3px 0;font-size:calc(10px * var(--text-scale));border-bottom:1px solid var(--l)}
+.notice-app .lesson-gap .ui-icon{width:12px;height:12px}
+.notice-app .lesson-gap::before,.notice-app .lesson-gap::after{display:none}
+html[data-density=compact] .notice-app .card-button{padding-block:6px}
 
-.week-grid{width:100%;min-width:680px;border-collapse:separate;border-spacing:0;table-layout:fixed}
-.week-scroll{overflow:auto;overscroll-behavior-x:contain;border-radius:0 0 12px 12px}
-.week-grid th,.week-grid td{border-bottom:1px solid var(--l);border-right:1px solid var(--l)}
-.week-grid tr>*:last-child{border-right:0}
-.week-grid tbody tr:last-child>*{border-bottom:0}
-.week-grid thead th{background:var(--s2);height:62px}
-.week-grid thead .slot-head,.week-grid .slot-index{width:45px;font-size:calc(11px * var(--text-scale));color:var(--m);font-weight:650}
-.week-grid .slot-index{vertical-align:top;padding-top:14px;background:var(--s2);font-variant-numeric:tabular-nums}
-.week-grid .week-day-button{display:grid;gap:3px;width:100%;height:100%;min-height:62px;align-content:center;padding:6px 3px;border:0;background:none;text-align:center}
-.week-grid .week-day-button:hover{background:color-mix(in srgb,var(--a) 14%,var(--s2))}
-.week-day-button span{font-size:calc(10px * var(--text-scale));text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
-.week-day-button b{font-size:calc(19px * var(--text-scale));line-height:1.05;font-weight:750;font-variant-numeric:tabular-nums}
+.week-scroll{overflow:auto;overscroll-behavior-x:contain;border:1px solid var(--t)}
+.week-grid{width:100%;min-width:660px;border-collapse:collapse;table-layout:fixed}
+.week-grid th,.week-grid td{border:1px solid var(--l)}
+.week-grid .slot-head,.week-grid .slot-index{width:42px;padding:4px;font-size:calc(11px * var(--text-scale));color:var(--m)}
+.week-grid th,.week-grid td[data-today]{background:var(--s2)}
+.week-day-button{display:grid;gap:2px;align-content:center;width:100%;min-height:53px;padding:4px;border:0;background:transparent}
+.week-day-button b{font:700 calc(19px * var(--text-scale))/1 var(--number-font)}
+.week-day-button span{font-size:calc(11px * var(--text-scale))}
 .week-day-button[aria-current=date]{background:var(--a);color:var(--ao)}
-.week-day-button[aria-current=date] span{color:inherit}
-.week-grid td{vertical-align:top;padding:5px;background:var(--s)}
-.week-grid td[data-today]{background:color-mix(in srgb,var(--a) 6%,var(--s))}
-.week-grid .week-slot{
- --slot-tint:var(--prac);display:grid;gap:3px;width:100%;min-height:82px;padding:7px 7px 7px 8px;
- border:1px solid color-mix(in srgb,var(--slot-tint) 28%,var(--l));border-inline-start:3px solid var(--slot-tint);
- background:color-mix(in srgb,var(--slot-tint) 12%,var(--s));border-radius:7px;text-align:left;align-content:start;
-}
-.week-grid .week-slot.lec{--slot-tint:var(--lec)}
-.week-slot+.week-slot{margin-top:4px}
+.week-grid td{vertical-align:top;padding:3px}
+.week-slot{display:grid;gap:3px;width:100%;min-height:68px;padding:4px;border:0;border-top:2px solid var(--prac);background:none;text-align:left}
+.week-slot.lec{border-top-color:var(--lec)}
+.week-slot+.week-slot{margin-top:5px}
+.week-slot:hover{background:var(--s2)}
 .week-slot.on-now{outline:2px solid var(--indicator-color);outline-offset:-2px}
-.week-slot .slot-time{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:0 5px;font-size:calc(10px * var(--text-scale));font-weight:650;color:var(--m);font-variant-numeric:tabular-nums}
-.week-slot strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font-size:calc(13px * var(--text-scale));line-height:1.17;letter-spacing:-.01em;overflow-wrap:anywhere}
-.week-slot .slot-meta{font-size:calc(10px * var(--text-scale));color:var(--m);line-height:1.18;overflow-wrap:anywhere}
-.week-empty{margin:0;padding:30px 15px;text-align:center;color:var(--m)}
+.week-slot .slot-time{display:flex;flex-wrap:wrap;gap:1px 6px;justify-content:space-between;font-size:calc(10px * var(--text-scale));color:var(--m)}
+.week-slot strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font-size:calc(12px * var(--text-scale));line-height:1.18;overflow-wrap:anywhere}
+.week-slot .slot-meta{font-size:calc(10px * var(--text-scale));color:var(--m)}
+.week-empty{margin:0;padding:20px;text-align:center;color:var(--m)}
 
-.planner-board .day-nav{gap:3px;padding:9px 12px;border-bottom:1px solid var(--l)}
-.planner-board .day-nav button{min-height:55px;padding:4px 1px;gap:1px;border-radius:7px}
-.planner-board .day-nav button>span:first-child{font-size:calc(10px * var(--text-scale))}
-.planner-board .day-nav small{font-size:calc(21px * var(--text-scale))}
-.planner-board .day-dots{gap:2px;margin:0;min-height:6px}
-.planner-board .day-dots i{width:3px;height:3px}
-.planner-board .today-beacon{width:4px;height:4px;right:5px;top:5px}
-.planner-board .search-field{margin:9px 12px}
-.planner-board .agenda{padding:13px 12px 12px}
-.agenda-heading{margin:0 0 8px}
-.planner-board .summary h2{font-size:calc(clamp(20px,2.2vw,30px) * var(--text-scale));font-weight:750;letter-spacing:-.05em;text-transform:none}
-.summary h2::first-letter{text-transform:uppercase}
-.summary #summaryCount{font-size:calc(12px * var(--text-scale))}
-.summary .day-summary{display:inline-flex;margin-left:4px;flex-wrap:wrap;gap:2px}
-.summary .day-summary span{font-size:calc(11px * var(--text-scale));background:none;border:0;color:var(--m);padding:0 3px}
-.planner-board .cards{gap:6px}
-.planner-board .card,.planner-board .card:hover{border:1px solid var(--l);border-radius:9px;background:var(--s);box-shadow:none;transform:none}
-.planner-board .card.live{border-color:var(--indicator-color)}
-.planner-board .card.live::after,.planner-board .card-button::before{content:none}
-.planner-board .card-button,html[data-density=compact] .planner-board .card-button{
- grid-template-columns:calc(65px * var(--text-scale)) minmax(0,1fr) 15px;gap:8px;min-height:0;padding:0;
-}
-.planner-board .time-block,html[data-density=compact] .planner-board .time-block{
- grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;
- border:0;background:var(--s2);padding:8px 6px 8px 9px;
-}
-.planner-board .lec .time-block{background:color-mix(in srgb,var(--lec) 15%,var(--s))}
-.planner-board .card.live .time-block{background:color-mix(in srgb,var(--indicator-color) 26%,var(--s))}
-.planner-board .time-block b{font-size:calc(17px * var(--text-scale));font-weight:750;line-height:1.13}
-.planner-board .time-block b::after{content:none}
-.planner-board .time-block small{font-size:calc(11px * var(--text-scale))}
-.planner-board .pair-no{margin:4px 0 0;padding:0;font-size:calc(9px * var(--text-scale))}
-.planner-board .lesson-body{grid-column:2;grid-row:1;padding:8px 0;gap:4px}
-.planner-board .title{font-size:calc(15px * var(--text-scale));line-height:1.18;letter-spacing:-.02em}
-.planner-board .lesson-top .subgroup-label,.planner-board .lesson-type,.planner-board .lesson-live{padding:2px 5px;font-size:calc(9px * var(--text-scale));line-height:1.35}
-.planner-board .lesson-meta{gap:2px 8px;font-size:calc(11px * var(--text-scale))}
-.planner-board .lesson-meta .ui-icon{width:13px;height:13px}
-.planner-board .card-chevron{grid-column:3;grid-row:1;width:13px}
-.planner-board .card-chevron .ui-icon{width:12px;height:12px}
-.planner-board .card-button[aria-expanded=true] .card-chevron{transform:rotate(90deg)}
-.planner-board .detail{margin:0;padding:12px;border-top:1px solid var(--l)}
-.planner-board .lesson-gap{justify-content:flex-start;padding-block:1px}
-html[data-density=compact] .planner-board .lesson-body{padding-block:5px}
-
-.planner-app .workspace-foot{display:flex;align-items:center;flex-wrap:wrap;margin-top:14px;gap:7px}
-.workspace-foot .utility-strip{display:flex;flex-wrap:wrap;margin:0;gap:4px}
-.workspace-foot .utility-strip button{min-height:44px;width:auto;max-width:100%;padding:4px 8px}
-.workspace-foot .freshness-shortcut small{display:none}
+.notice-app .workspace-foot{display:flex;flex-wrap:wrap;align-items:center;margin-top:18px;gap:3px 7px;border-top:1px solid var(--t)}
+.workspace-foot .utility-strip{display:flex;flex-wrap:wrap;gap:3px;margin:0}
+.workspace-foot .utility-strip button{min-height:44px;width:auto;max-width:100%;padding:3px 5px;border-radius:0}
 .workspace-foot .credit{margin-left:auto}
-#modal .panel{background:var(--s);border-top:4px solid var(--a)}
-#modal .panel-head{border-bottom:1px solid var(--l);padding-bottom:10px;margin-bottom:12px}
-#modal .panel-head h2{font-size:calc(25px * var(--text-scale));font-weight:750;letter-spacing:-.047em}
-#modal .panel-head .icon{border-radius:8px;background:var(--s2);border-color:transparent}
-#modal .choice,#modal .menu-item,#modal .teacher-pick{border-radius:9px}
-#modal .choice.on{box-shadow:inset 3px 0 var(--a)}
-#onboard .panel{background:var(--s);border-radius:14px;border-top:4px solid var(--a)}
-@media(min-width:761px){
- #modal{align-items:stretch;justify-content:flex-end;padding:0;background:#211b328c}
- #modal .panel{width:min(100%,568px);height:100dvh;max-height:none;border-radius:12px 0 0 12px;padding:18px 20px;animation:planner-drawer-in .24s var(--ease)}
- #modal.teacher-schedule-modal .panel,#modal.appearance-modal .panel{width:min(100%,925px)}
- #modal.is-closing .panel{animation:planner-drawer-out .24s ease both}
- @keyframes planner-drawer-in{from{transform:translateX(100%)}to{transform:translateX(0)}}
- @keyframes planner-drawer-out{from{transform:translateX(0)}to{transform:translateX(100%)}}
-}
-@media(prefers-reduced-motion:reduce){
- #modal .panel,#modal.is-closing .panel{animation:none}
-}
-html[data-motion=off] #modal .panel{animation:none}
-
-@media(max-width:1100px){
- .site-bar-inner{gap:14px}
- .site-nav .nav-item{padding-inline:6px}
- .site-nav .nav-item .ui-icon{display:none}
- .planner-layout{grid-template-columns:170px minmax(0,1fr);gap:11px}
- .planner-rail .current-panel{padding:12px}
-}
-@media(max-width:1020px){
- .planner-layout{grid-template-columns:minmax(0,1fr);gap:10px}
- .planner-rail .week-panel,.planner-rail .notes-cta{display:none}
- .planner-rail .current-panel{display:flex;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px 12px}
- .status-subject{font-size:calc(16px * var(--text-scale))}
- .current-panel .status-text{gap:5px}
- .current-panel .status-action{margin-left:auto}
-}
-@media(max-width:820px){
- .site-nav,.site-actions #supportButton{display:none}
-}
+#modal,#onboard{background:#151a38a3}
+#modal .panel,#onboard .panel{border:0;border-top:6px solid #f9db62;border-radius:0;background:var(--s)}
+#modal .panel-head{padding-bottom:8px;border-bottom:1px solid var(--t);margin-bottom:10px}
+#modal .panel-head h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:calc(31px * var(--text-scale))}
+#modal .panel-head .icon,#modal .choice,#modal .menu-item,#modal .teacher-pick{border-radius:0}
 @media(max-width:760px){
- .planner-app .workspace,.planner-app .site-bar-inner{padding-inline:12px}
- .site-bar-inner{min-height:51px}
- .site-bar .logo{width:29px;height:29px}
- .site-actions #menuButton{display:none}
- .planner-app .workspace{padding-block:12px calc(89px + env(safe-area-inset-bottom))}
- .masthead{flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:10px}
- .masthead h1{font-size:calc(clamp(29px,7.5vw,38px) * var(--text-scale))}
- .masthead .eyebrow{font-size:9px;margin-bottom:3px}
- .group-switch{min-height:44px;max-width:100%;padding:4px 5px;gap:5px}
- .group-monogram{width:28px;height:28px}
- .group-monogram .ui-icon{width:17px;height:17px}
- .group-copy strong{font-size:calc(12px * var(--text-scale))}
- .group-copy small{font-size:calc(9px * var(--text-scale))}
- .group-switch .chevron{width:12px}
- .board-controls{padding:6px;gap:4px}
- .board-controls .weekbar{width:auto;flex:1 1 133px;justify-content:space-between}
- .board-controls .weekbar button{min-width:35px;min-height:44px}
- .board-controls .weekbar .week-title{font-size:calc(12px * var(--text-scale));padding-inline:4px}
- .week-legend{flex-basis:100%;padding:3px 2px;order:3}
- .view-toggle{margin-left:0;flex:0 1 auto}
- .view-toggle button{flex:1;padding-inline:6px;min-height:38px;font-size:calc(11px * var(--text-scale))}
- .board-controls .quick-today{order:2;margin-left:auto}
- .board-filters{padding:5px 8px;gap:5px}
- .board-filters .filter-summary{font-size:calc(11px * var(--text-scale))}
- .planner-board .day-nav{padding:6px;gap:3px}
- .planner-board .day-nav button{min-height:49px}
- .planner-board .agenda{padding:9px 7px}
- .planner-board .card-button,html[data-density=compact] .planner-board .card-button{grid-template-columns:calc(52px * var(--text-scale)) minmax(0,1fr) 13px;gap:6px}
- .planner-board .time-block,html[data-density=compact] .planner-board .time-block{padding-inline:5px}
- .planner-board .time-block b{font-size:calc(15px * var(--text-scale))}
- .planner-board .lesson-meta .lesson-teacher,.planner-board .lesson-meta:not(:has(>span:not(.lesson-teacher))){display:none}
- .planner-board .lesson-top{order:1}
- .planner-board .lesson-gap{font-size:calc(10px * var(--text-scale))}
- html[data-glass] .footer{gap:2px;padding:5px 8px calc(12px + env(safe-area-inset-bottom));background:#211b32;border-color:#ffffff1b;color:#f3ecff}
- .footer button,.footer button .ui-icon,.footer button span{color:inherit}
- .footer button.active{background:#ffffff19;color:#ffbd9f}
- .footer .credit{color:#dcd2e8}
+ .notice-app .site-bar-inner,.notice-app .workspace{padding-inline:11px}
+ .site-bar-inner{min-height:52px;gap:5px}
+ .site-bar .brand{gap:3px}
+ .site-bar .logo{width:22px;height:22px}
+ .site-bar .brand-wordmark{font-size:14px}
+ .site-bar .freshness-shortcut{gap:4px;padding:3px 1px}
+ .site-bar .freshness-shortcut strong{font-size:calc(12px * var(--text-scale))}
+ .site-bar .freshness-shortcut>.ui-icon{width:11px;height:11px;margin:0}
+ .site-actions .icon{width:34px;min-width:34px}
+ .site-actions #themeButton{display:none}
+ .notice-app .workspace{padding-block:0 calc(81px + env(safe-area-inset-bottom))}
+ .masthead{flex-direction:column;align-items:flex-start;gap:10px;padding:15px 13px}
+ .masthead h1{font-size:calc(clamp(37px,10.2vw,62px) * var(--text-scale))}
+ .masthead .eyebrow{margin-bottom:5px;font-size:calc(9px * var(--text-scale))}
+ .masthead .group-switch{align-self:flex-start;min-height:44px}
+ .masthead .group-monogram{width:26px;height:26px}
+ .masthead .group-copy strong{font-size:calc(13px * var(--text-scale))}
+ .masthead .group-copy small{font-size:calc(10px * var(--text-scale))}
+ .notice-app .current-panel{padding:5px 0;gap:0}
+ .notice-app .current-panel .status{flex-basis:100%}
+ .notice-app .current-panel .status-text{gap:3px 6px}
+ .notice-app .status-subject{font-size:calc(13px * var(--text-scale))}
+ .notice-app .current-panel .status-action{min-height:36px;font-size:calc(11px * var(--text-scale))}
+ .board-controls{gap:3px 6px;padding-block:4px 1px}
+ .board-controls .weekbar button{min-width:29px}
+ .board-controls .weekbar .week-title{font-size:calc(13px * var(--text-scale))}
+ .view-toggle button{padding-inline:5px;font-size:calc(11px * var(--text-scale))}
+ .week-legend{order:3;flex-basis:100%}
+ .notice-app .day-nav button,.notice-app .day-nav button.on{min-height:46px}
+ .notice-app .day-nav button small{font-size:calc(17px * var(--text-scale))}
+ .notice-app .agenda{padding-top:9px;--list-columns:calc(48px * var(--text-scale)) minmax(0,1fr) minmax(0,64px) 14px;--list-gap:5px}
+ .lesson-columns{font-size:calc(9px * var(--text-scale));letter-spacing:.045em;overflow-wrap:anywhere}
+ .notice-app .time-block b{font-size:calc(16px * var(--text-scale))}
+ .notice-app .title{font-size:calc(14px * var(--text-scale))}
+ .notice-app .lesson-room{font-size:calc(11px * var(--text-scale))}
+ .notice-app .lesson-meta{display:none}
+ .notice-app .lesson-type,.notice-app .lesson-top .subgroup-label,.notice-app .lesson-live{font-size:calc(9px * var(--text-scale))}
+ .notice-app .card-chevron{font-size:18px}
+ html[data-glass] .footer{gap:0;padding:0 3px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--t);background:var(--bg)}
+ .footer button{min-height:49px;border-radius:0;border-right:1px solid var(--l)}
+ .footer button:nth-of-type(4){border-right:0}
+ .footer button.active{border-radius:0;background:var(--s2);color:var(--a)}
+ .footer .credit{bottom:1px}
+ #modal{padding:0;align-items:stretch}
+ #modal .panel{width:100%;max-height:none;height:100dvh;padding:block 8px}
+ #modal .sheet-grip{display:none}
 }
 
 </style>
 </head>
 <body>
 <canvas id="backgroundEffects" class="background-effects" aria-hidden="true" hidden></canvas>
-<div class="app-shell planner-app" id="appShell">
+<div class="app-shell notice-app" id="appShell">
   <header class="site-bar">
     <div class="site-bar-inner">
       <div class="brand">
         <div class="logo"><span id="brandFallback">🌾</span><img class="brand-icon" id="brandIcon" alt="" hidden></div>
         <div class="brand-wordmark">БашГАУ</div>
       </div>
-      <nav class="site-nav" id="desktopNav"></nav>
+      <button class="data-info freshness-shortcut" id="dataInfo" data-action="freshness" aria-haspopup="dialog"></button>
       <div class="site-actions">
         <button class="icon" data-action="search" id="searchButton" aria-label="Search"></button>
         <button class="icon" data-action="themes" id="themeButton" aria-label="Theme"><span data-icon="palette"></span></button>
-        <button class="icon" data-action="support" id="supportButton" aria-label="Поддержка"></button>
         <button class="icon menu-trigger" data-action="menu" id="menuButton" aria-label="Menu"></button>
       </div>
     </div>
@@ -983,9 +966,7 @@ html[data-motion=off] #modal .panel{animation:none}
     </div>
     <nav class="quick-groups" id="quickGroups" hidden></nav>
     <div class="update-banner" id="updateBanner" hidden><button id="updateDetails" data-action="updates"></button><button class="icon" id="dismissUpdate" data-action="dismissUpdate">✕</button></div>
-    <div class="planner-layout">
-      <aside class="planner-rail">
-        <section class="current-panel" aria-labelledby="statusLabel">
+    <section class="current-panel" aria-labelledby="statusLabel">
           <div class="status" id="status"><div class="status-text">
             <b id="statusLabel"></b>
             <strong class="status-subject" id="statusSubject" hidden></strong>
@@ -1000,12 +981,7 @@ html[data-motion=off] #modal .panel{animation:none}
             <span class="ufa-time" id="statusUfa" data-i18n="ufaTime" hidden></span>
           </div></div>
           <button class="text-link status-action" id="statusAction" data-action="openUpcoming" hidden><span data-i18n="openUpcoming"></span><span data-icon="arrowUpRight"></span></button>
-        </section>
-        <section class="week-panel" id="weekOverviewPanel"></section>
-        <button class="notes-cta" data-action="notes">
-          <span data-icon="notes"></span><span><strong data-i18n="notes"></strong></span><span class="arrow" aria-hidden="true">↗</span>
-        </button>
-      </aside>
+    </section>
       <section class="planner-board" aria-label="Расписание" id="plannerBoard">
         <div class="board-controls">
           <div class="weekbar">
@@ -1034,19 +1010,24 @@ html[data-motion=off] #modal .panel{animation:none}
         <div class="week-scroll" id="weekGrid" hidden></div>
         <section class="agenda" id="dailyAgenda">
           <div class="agenda-heading"><div class="summary"><h2 id="summaryTitle"></h2><span id="summaryCount"></span></div></div>
+          <div class="lesson-columns" id="lessonColumns" hidden>
+            <span data-i18n="listTime"></span><span data-i18n="subject"></span><span data-i18n="room"></span>
+          </div>
           <section class="cards" id="cards" aria-live="polite"></section>
           <div class="agenda-end" id="agendaEnd" data-i18n="dayEnd"></div>
         </section>
       </section>
-    </div>
     <footer class="workspace-foot">
       <div class="utility-strip">
-        <button class="data-info freshness-shortcut" id="dataInfo" data-action="freshness" aria-haspopup="dialog"></button>
         <button class="offline-pill" id="offlineShortcut" data-action="offline" aria-haspopup="dialog"><i aria-hidden="true"></i><span class="offline-symbol" data-icon="offline"></span><span id="offlineLabel"></span></button>
         <button class="install-shortcut" id="installShortcut" data-action="install" hidden></button>
       </div>
       <span class="credit">by csenchis</span>
     </footer>
+    <details class="load-details">
+      <summary data-i18n="weekLoad"></summary>
+      <section class="week-panel" id="weekOverviewPanel"></section>
+    </details>
   </main>
 </div>
 <footer class="footer" id="footer"></footer>
@@ -1125,11 +1106,11 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt
 const UPGRADE_I18N={"ru":{"effectAurora":"Сияние","effectWaves":"Волны","effectStars":"Созвездия","effectIntensity":"Интенсивность фона","paletteSaturation":"Насыщенность акцентов","paletteSaturationHint":"Меняет цвет иконок и календаря. Индикатор текущей пары настраивается отдельно.","cardDensity":"Плотность карточек","densityComfort":"Удобно","densityCompact":"Компактно","appearanceUndo":"Отменить","appearanceUndone":"Настройки при открытии восстановлены","pauseBackground":"Приостановить фон","resumeBackground":"Оживить фон","classMinutes":"{n} мин занятий","classBreak":"Перерыв · {n} мин","freeWindow":"Окно · {n} мин","jumpCurrent":"К текущей паре","nextTeachingDay":"Ближайший учебный день","noFurtherLessons":"Дальше в этом семестре занятий нет","copyLesson":"Скопировать пару","teacherLessons":"Пары преподавателя","commonLessons":"Общие пары для всей группы","selectedFilter":"{filter} + общие пары","effectHint":"Фон остаётся за текстом и кнопками. В скрытой вкладке анимация приостанавливается.","motionLabel":"Плавные переходы","motionDescription":"Открытие меню, переключение дней и карточек. Движение фона настраивается отдельно.","indicatorSaturationHint":"0% — серый, 100% — выбранный цвет. Если индикатор сливается с иконками, его оттенок автоматически меняется.","sourceConflictShort":"Пересечение в источнике","checkAhead":"Этот файл новее опубликованного сайта"},"en":{"effectAurora":"Aurora","effectWaves":"Waves","effectStars":"Constellations","effectIntensity":"Background intensity","paletteSaturation":"Accent saturation","paletteSaturationHint":"Adjusts icons and calendar colours. The current-class indicator has separate controls.","cardDensity":"Card spacing","densityComfort":"Comfortable","densityCompact":"Compact","appearanceUndo":"Undo","appearanceUndone":"Settings restored to when you opened this panel","pauseBackground":"Pause background","resumeBackground":"Animate background","classMinutes":"{n} min of classes","classBreak":"Break · {n} min","freeWindow":"Free period · {n} min","jumpCurrent":"Current class","nextTeachingDay":"Next teaching day","noFurtherLessons":"No later classes in this semester","copyLesson":"Copy class","teacherLessons":"Teacher’s classes","commonLessons":"Classes for the whole group","selectedFilter":"{filter} + shared classes","effectHint":"The background stays behind text and buttons. Animation pauses in hidden tabs.","motionLabel":"Smooth transitions","motionDescription":"Menu, day and card transitions. Background motion is controlled separately.","indicatorSaturationHint":"0% is grey; 100% uses your chosen colour. If it blends into the icons, the indicator hue adjusts automatically.","sourceConflictShort":"Source overlap","checkAhead":"This file is newer than the published site"},"es":{"effectAurora":"Aurora","effectWaves":"Ondas","effectStars":"Constelaciones","effectIntensity":"Intensidad del fondo","paletteSaturation":"Saturación de los acentos","paletteSaturationHint":"Ajusta los colores de los iconos y del calendario. El indicador de la clase actual se configura por separado.","cardDensity":"Espaciado de tarjetas","densityComfort":"Cómodo","densityCompact":"Compacto","appearanceUndo":"Deshacer","appearanceUndone":"Se restauró la configuración al abrir este panel","pauseBackground":"Pausar fondo","resumeBackground":"Animar fondo","classMinutes":"{n} min de clases","classBreak":"Descanso · {n} min","freeWindow":"Hora libre · {n} min","jumpCurrent":"Clase actual","nextTeachingDay":"Próximo día de clases","noFurtherLessons":"No hay más clases este semestre","copyLesson":"Copiar clase","teacherLessons":"Clases del docente","commonLessons":"Clases para todo el grupo","selectedFilter":"{filter} + clases comunes","effectHint":"El fondo permanece detrás del texto y los botones. La animación se pausa en pestañas ocultas.","motionLabel":"Transiciones suaves","motionDescription":"Transiciones de menús, días y tarjetas. El movimiento del fondo se controla por separado.","indicatorSaturationHint":"0% es gris; 100% usa el color elegido. Si se confunde con los iconos, el tono del indicador se ajusta automáticamente.","sourceConflictShort":"Solapamiento en la fuente","checkAhead":"Este archivo es más reciente que el sitio publicado"},"fr":{"effectAurora":"Aurore","effectWaves":"Vagues","effectStars":"Constellations","effectIntensity":"Intensité du fond","paletteSaturation":"Saturation des accents","paletteSaturationHint":"Règle les couleurs des icônes et du calendrier. L’indicateur du cours actuel se règle séparément.","cardDensity":"Espacement des cartes","densityComfort":"Confortable","densityCompact":"Compact","appearanceUndo":"Annuler","appearanceUndone":"Réglages restaurés à l’ouverture de ce panneau","pauseBackground":"Mettre le fond en pause","resumeBackground":"Animer le fond","classMinutes":"{n} min de cours","classBreak":"Pause · {n} min","freeWindow":"Créneau libre · {n} min","jumpCurrent":"Cours actuel","nextTeachingDay":"Prochain jour de cours","noFurtherLessons":"Aucun autre cours ce semestre","copyLesson":"Copier le cours","teacherLessons":"Cours de l’enseignant","commonLessons":"Cours pour tout le groupe","selectedFilter":"{filter} + cours communs","effectHint":"Le fond reste derrière le texte et les boutons. L’animation s’arrête dans les onglets masqués.","motionLabel":"Transitions fluides","motionDescription":"Transitions des menus, jours et cartes. Le mouvement du fond se règle séparément.","indicatorSaturationHint":"0 % est gris ; 100 % utilise la couleur choisie. Si elle se confond avec les icônes, la teinte de l’indicateur s’ajuste automatiquement.","sourceConflictShort":"Chevauchement dans la source","checkAhead":"Ce fichier est plus récent que le site publié"},"pt":{"effectAurora":"Aurora","effectWaves":"Ondas","effectStars":"Constelações","effectIntensity":"Intensidade do fundo","paletteSaturation":"Saturação dos destaques","paletteSaturationHint":"Ajusta as cores dos ícones e do calendário. O indicador da aula atual é configurado separadamente.","cardDensity":"Espaçamento dos cartões","densityComfort":"Confortável","densityCompact":"Compacto","appearanceUndo":"Desfazer","appearanceUndone":"Configurações restauradas ao abrir este painel","pauseBackground":"Pausar fundo","resumeBackground":"Animar fundo","classMinutes":"{n} min de aulas","classBreak":"Intervalo · {n} min","freeWindow":"Horário livre · {n} min","jumpCurrent":"Aula atual","nextTeachingDay":"Próximo dia de aulas","noFurtherLessons":"Não há mais aulas neste semestre","copyLesson":"Copiar aula","teacherLessons":"Aulas do professor","commonLessons":"Aulas para toda a turma","selectedFilter":"{filter} + aulas comuns","effectHint":"O fundo fica atrás do texto e dos botões. A animação pausa nas abas ocultas.","motionLabel":"Transições suaves","motionDescription":"Transições de menus, dias e cartões. O movimento do fundo é controlado separadamente.","indicatorSaturationHint":"0% é cinza; 100% usa a cor escolhida. Se ela se confundir com os ícones, o tom do indicador é ajustado automaticamente.","sourceConflictShort":"Sobreposição na fonte","checkAhead":"Este arquivo é mais recente que o site publicado"}};
 for(const [code,values] of Object.entries(UPGRADE_I18N))Object.assign(I18N[code],values);
 const UPCOMING_I18N={
- ru:{upcomingClass:'Ближайшая пара',openUpcoming:'К расписанию дня',noUpcoming:'Предстоящих пар нет',parallelClasses:'Занятий в это время: {n}',viewDay:'День',viewWeek:'Неделя',plannerViews:'Вид расписания',slotHeader:'Пара',emptyWeek:'На этой неделе занятий нет'},
- en:{upcomingClass:'Upcoming class',openUpcoming:'View day schedule',noUpcoming:'No upcoming classes',parallelClasses:'Classes at this time: {n}',viewDay:'Day',viewWeek:'Week',plannerViews:'Timetable view',slotHeader:'Class',emptyWeek:'No classes this week'},
- es:{upcomingClass:'Próxima clase',openUpcoming:'Ver horario del día',noUpcoming:'No hay próximas clases',parallelClasses:'Clases a esta hora: {n}',viewDay:'Día',viewWeek:'Semana',plannerViews:'Vista del horario',slotHeader:'Clase',emptyWeek:'No hay clases esta semana'},
- fr:{upcomingClass:'Prochain cours',openUpcoming:'Voir le planning du jour',noUpcoming:'Aucun cours à venir',parallelClasses:'Cours à cette heure : {n}',viewDay:'Jour',viewWeek:'Semaine',plannerViews:'Vue du planning',slotHeader:'Cours',emptyWeek:'Aucun cours cette semaine'},
- pt:{upcomingClass:'Próxima aula',openUpcoming:'Ver horário do dia',noUpcoming:'Não há aulas futuras',parallelClasses:'Aulas a esta hora: {n}',viewDay:'Dia',viewWeek:'Semana',plannerViews:'Vista do horário',slotHeader:'Aula',emptyWeek:'Sem aulas nesta semana'}
+ ru:{upcomingClass:'Ближайшая пара',openUpcoming:'К расписанию дня',noUpcoming:'Предстоящих пар нет',parallelClasses:'Занятий в это время: {n}',viewDay:'День',viewWeek:'Неделя',plannerViews:'Вид расписания',slotHeader:'Пара',emptyWeek:'На этой неделе занятий нет',listTime:'Время'},
+ en:{upcomingClass:'Upcoming class',openUpcoming:'View day schedule',noUpcoming:'No upcoming classes',parallelClasses:'Classes at this time: {n}',viewDay:'Day',viewWeek:'Week',plannerViews:'Timetable view',slotHeader:'Class',emptyWeek:'No classes this week',listTime:'Time'},
+ es:{upcomingClass:'Próxima clase',openUpcoming:'Ver horario del día',noUpcoming:'No hay próximas clases',parallelClasses:'Clases a esta hora: {n}',viewDay:'Día',viewWeek:'Semana',plannerViews:'Vista del horario',slotHeader:'Clase',emptyWeek:'No hay clases esta semana',listTime:'Hora'},
+ fr:{upcomingClass:'Prochain cours',openUpcoming:'Voir le planning du jour',noUpcoming:'Aucun cours à venir',parallelClasses:'Cours à cette heure : {n}',viewDay:'Jour',viewWeek:'Semaine',plannerViews:'Vue du planning',slotHeader:'Cours',emptyWeek:'Aucun cours cette semaine',listTime:'Heure'},
+ pt:{upcomingClass:'Próxima aula',openUpcoming:'Ver horário do dia',noUpcoming:'Não há aulas futuras',parallelClasses:'Aulas a esta hora: {n}',viewDay:'Dia',viewWeek:'Semana',plannerViews:'Vista do horário',slotHeader:'Aula',emptyWeek:'Sem aulas nesta semana',listTime:'Hora'}
 };
 for(const [code,values] of Object.entries(UPCOMING_I18N))Object.assign(I18N[code],values);
 function uiIcon(name){
@@ -1194,10 +1175,9 @@ function renderWeekOverview(){
  const counts=Array.from({length:6},(_,i)=>new Set(matchingRows(state.week,i+1,'').map(row=>row[1])).size),max=Math.max(1,...counts),total=counts.reduce((a,b)=>a+b,0);
  $('weekOverviewPanel').innerHTML=`<h3>${esc(t('weekLoad'))}</h3><div class="week-stat"><strong>${total}</strong><span>${esc(t('classesUnit'))}</span></div><div class="week-chart">${counts.map((n,i)=>`<button class="${state.day===i+1?'on':''}" data-action="day" data-value="${i+1}" aria-label="${esc(I18N[state.lang].longDays[i]+', '+t('dayClasses',{n}))}" aria-pressed="${state.day===i+1}"><span class="bar-count">${n}</span><span class="bar" style="--bar:${Math.max(4,Math.round(n/max*64))}px" aria-hidden="true"></span><small>${esc(I18N[state.lang].shortDays[i])}</small></button>`).join('')}</div><p class="week-caption">${esc(t('weekCaption'))}</p>`;
 }
-const widePlanner=window.matchMedia('(min-width: 1021px)');
-let plannerViewChoice='';
+let plannerViewChoice='day';
 function plannerView(){
- return $('searchBox').hidden?(plannerViewChoice||(widePlanner.matches?'week':'day')):'day';
+ return $('searchBox').hidden?plannerViewChoice:'day';
 }
 function renderWeekGrid(){
  const grid=$('weekGrid'),c=ufaClock(),realDay=state.week===semesterWeek(c)?ufaDay(c):0;
@@ -1240,7 +1220,6 @@ function renderPlannerView(){
  $('viewToggle').querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.value===view)));
  if(week)renderWeekGrid();
 }
-widePlanner.addEventListener('change',()=>{renderPlannerView();renderFilterSummary()});
 function render(animate=false){
  document.documentElement.lang=state.lang;themeApply();document.title=t('app');
  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
@@ -1250,10 +1229,7 @@ function render(animate=false){
  $('calendarRange').textContent=semesterDateRange(state.week);
  $('plannerBoard').setAttribute('aria-label',t('app'));
  $('viewToggle').setAttribute('aria-label',t('plannerViews'));
- const nav=(action,icon,key,active=false)=>`<button class="nav-item ${active?'active':''}" data-action="${action}" aria-label="${esc(t(key))}">${uiIcon(icon)}<span>${esc(t(key))}</span></button>`;
- $('desktopNav').innerHTML=nav('today','schedule','scheduleNav',true)+nav('groups','groups','groupsNav')+nav('teacherSchedule','teachers','forTeachers')+nav('notes','notes','notes')+nav('bells','clock','bells');
  $('themeButton').setAttribute('aria-label',t('themeSettings'));
- $('desktopNav').setAttribute('aria-label',t('menu'));
  $('searchButton').setAttribute('aria-label',t('search'));$('menuButton').setAttribute('aria-label',t('menu'));$('searchButton').innerHTML=uiIcon('search');$('menuButton').innerHTML=uiIcon('menu');$('searchFieldIcon').innerHTML=uiIcon('search');
  $('groupButton').innerHTML=`<span class="group-monogram">${uiIcon('groups')}</span><span class="group-copy"><strong>${esc(DATA.labels[state.group])}</strong><small>${esc(t(groupInfo(state.group).education))} · ${esc(t('course',{n:groupInfo(state.group).course}))} · ${esc(t(modeKey(groupInfo(state.group).mode)))}</small></span><span class="chevron">${uiIcon('chevronDown')}</span>`;
  $('groupButton').setAttribute('aria-label',t('chooseGroup')+' · '+DATA.labels[state.group]);
@@ -1321,12 +1297,13 @@ let lastCardMarkup='';
 function renderCards(animate=false){
  const rows=matchingRows(),c=ufaClock(),minutes=c.hour*60+c.minute,realWeek=semesterWeek(c),realDay=ufaDay(c);
  $('summaryCount').textContent=t('lessonsCount',{n:new Set(rows.map(row=>row[0]+':'+row[1]+':'+row[9])).size});
+ $('lessonColumns').hidden=!rows.length;
  $('agendaEnd').hidden=!rows.length||!!state.query;
  const markup=rows.length?rows.map((row,index)=>{
   const opened=state.openCard===rowId(row),actual=state.week===realWeek&&row[0]===realDay&&!state.query;
   const live=actual&&minutes>=toMinutes(row[9])&&minutes<toMinutes(row[10]);const past=actual&&minutes>=toMinutes(row[10]);
   const conflict=row[11]?.includes(state.week);
-  return lessonGap(rows,index)+`<article style="--stagger:${Math.min(index,5)*45}ms" class="card ${row[2]?'lec':'prac'} ${live?'live':''} ${past?'past':''}"><button class="card-button" data-action="expand" data-index="${index}" aria-expanded="${opened}"><span class="time-block"><b>${esc(row[9])}</b><small>${esc(row[10])}</small><span class="pair-no">${esc(t('pair',{n:row[1]}))}</span></span><span class="lesson-body"><span class="title">${esc(subject(row))}</span><span class="lesson-top"><span class="lesson-type">${esc(t(row[2]?'lecture':'practice'))}</span><span class="subgroup-label">${esc(row[7]?subgroupName(Number(row[7])):t('allGroups'))}</span>${state.query?`<span class="subgroup-label">${esc(I18N[state.lang].shortDays[row[0]-1])}</span>`:''}${live?`<span class="lesson-live">${esc(t('now'))}</span>`:''}${conflict?`<span class="subgroup-label" title="${esc(t('sourceConflict'))}">⚠ ${esc(t('sourceConflictShort'))}</span>`:''}</span><span class="lesson-meta">${row[4]?`<span>${uiIcon('pin')}${esc(room(row[4]))}</span>`:''}<span class="lesson-teacher">${uiIcon('person')}${esc(teacher(row)||t('noTeacher'))}</span></span></span><span class="card-chevron">${uiIcon('chevronRight')}</span></button>${opened?`<div class="detail"><p>${esc(t('teacher'))}: <b>${esc(teacher(row)||t('noTeacher'))}</b></p><p>${esc(t('weeks'))}: <b>${esc(formatWeek(row))}</b></p>${conflict?`<p>⚠️ ${esc(t('sourceConflict'))}</p>`:''}<label for="noteText">${esc(t('note'))}</label><input id="noteText" data-note-index="${index}" value="${esc(noteValue(row))}" placeholder="${esc(t('notePlaceholder'))}"><div class="lesson-tools"><button data-action="copyLesson" data-index="${index}">${uiIcon('copy')}${esc(t('copyLesson'))}</button></div><button class="report-issue" data-action="reportIssue" data-index="${index}">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`:''}</article>`;
+  return lessonGap(rows,index)+`<article style="--stagger:${Math.min(index,5)*45}ms" class="card ${row[2]?'lec':'prac'} ${live?'live':''} ${past?'past':''}"><button class="card-button" data-action="expand" data-index="${index}" aria-expanded="${opened}"><span class="time-block"><b>${esc(row[9])}</b><small>${esc(row[10])}</small><span class="pair-no">${esc(t('pair',{n:row[1]}))}</span></span><span class="lesson-body"><span class="title">${esc(subject(row))}</span><span class="lesson-top"><span class="lesson-type">${esc(t(row[2]?'lecture':'practice'))}</span><span class="subgroup-label">${esc(row[7]?subgroupName(Number(row[7])):t('allGroups'))}</span>${state.query?`<span class="subgroup-label">${esc(I18N[state.lang].shortDays[row[0]-1])}</span>`:''}${live?`<span class="lesson-live">${esc(t('now'))}</span>`:''}${conflict?`<span class="subgroup-label" title="${esc(t('sourceConflict'))}">⚠ ${esc(t('sourceConflictShort'))}</span>`:''}</span><span class="lesson-meta">${esc(teacher(row)||t('noTeacher'))}</span></span><span class="lesson-room">${esc(room(row[4])||'—')}</span><span class="card-chevron" aria-hidden="true"></span></button>${opened?`<div class="detail"><p>${esc(t('teacher'))}: <b>${esc(teacher(row)||t('noTeacher'))}</b></p><p>${esc(t('weeks'))}: <b>${esc(formatWeek(row))}</b></p>${conflict?`<p>⚠️ ${esc(t('sourceConflict'))}</p>`:''}<label for="noteText">${esc(t('note'))}</label><input id="noteText" data-note-index="${index}" value="${esc(noteValue(row))}" placeholder="${esc(t('notePlaceholder'))}"><div class="lesson-tools"><button data-action="copyLesson" data-index="${index}">${uiIcon('copy')}${esc(t('copyLesson'))}</button></div><button class="report-issue" data-action="reportIssue" data-index="${index}">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`:''}</article>`;
  }).join(''):`<div class="empty"><span class="empty-icon">${uiIcon('schedule')}</span><strong>${esc(t(state.query?'noSearch':'noLessons'))}</strong><span>${esc(t('noLessonsHint'))}</span>${!state.query?`<button class="primary" data-action="nextTeachingDay">${esc(t('nextTeachingDay'))}</button>`:''}<button class="report-issue" data-action="reportIssue">${uiIcon('flag')}${esc(t('reportIssue'))}</button></div>`;
  const cards=$('cards');if(lastCardMarkup!==markup){lastCardMarkup=markup;cards.classList.toggle('is-changing',animate);cards.innerHTML=markup}
  renderDaySummary(rows);syncJumpToCurrent();
@@ -1679,7 +1656,7 @@ document.addEventListener('keydown',event=>{
  if(event.key==='Escape'&&overlay===$('modal')){event.preventDefault();closeModal();return}
  if(event.key==='Tab'){const items=[...overlay.querySelectorAll('button:not([disabled]),input,select,textarea,a[href],[tabindex="0"]')].filter(el=>!el.hidden&&el.getClientRects().length);if(!items.length)return;const first=items[0],last=items[items.length-1];if(event.shiftKey&&(document.activeElement===first||!items.includes(document.activeElement))){event.preventDefault();last.focus()}else if(!event.shiftKey&&(document.activeElement===last||!items.includes(document.activeElement))){event.preventDefault();first.focus()}}
 });
-const APP_RELEASE='2026-11-21.1';
+const APP_RELEASE='2026-11-21.2';
 const SCHEDULE_RELEASE='2026-10-27';
 const SUPPORT_LINKS={telegram:'https://t.me/csenchis',max:'https://max.ru/u/f9LHodD0cOLBig0ncSmZu-eTLwPD-Hm-RjLt9f2f7IFpYJJtNziGpqJPshc'};
 const jsonRead=(key,fallback)=>{try{return JSON.parse(read(key))??fallback}catch{return fallback}};
@@ -1696,6 +1673,7 @@ if(DATA.groups[read('bash_grp')]&&!read('bash_subgroups_migrated_v2')&&state.sub
 state.subgroup=Object.hasOwn(state.subgroupPrefs,state.group)?validSubgroup(state.subgroupPrefs[state.group]):validSubgroup(state.subgroup);
 state.textSize=read('bash_text_size_v1')==='large'?'large':'comfortable';
 const READY_THEMES=[
+ {id:'notice',names:['Афиша','Notice','Cartel','Affiche','Cartaz'],bg:'#f5f0e4',a:'#1a36c6',icon:'#203eab',calendar:'#1a36c6',lec:'#a24a1b',prac:'#203eab',indicator:'#d07822'},
  {id:'planner',names:['Планер','Planner','Agenda','Planning','Agenda'],bg:'#f7f3ef',a:'#5b3cce',icon:'#5b3cce',calendar:'#5b3cce',lec:'#b64f20',prac:'#6145bc',indicator:'#e06938'},
  {id:'campus',names:['Кампус','Campus','Campus','Campus','Campus'],bg:'#f1f4e9',a:'#55774c',icon:'#55774c',calendar:'#d9ef9f',indicator:'#abcf51'},
  {id:'graphite',names:['Графит','Graphite','Grafito','Graphite','Grafite'],bg:'#171a1f',a:'#a8bdd8',indicator:'#ffb454'},
@@ -1719,16 +1697,17 @@ function readyThemeMarkup(){return `<button class="ready-launch" data-action="re
 function toggleReadyThemes(){state.readyThemesOpen=!state.readyThemesOpen;const gallery=$('readyThemeGallery');gallery.hidden=!state.readyThemesOpen;document.querySelector('[data-action="readyThemes"]').setAttribute('aria-expanded',String(state.readyThemesOpen));if(state.readyThemesOpen)gallery.querySelector('button')?.focus({preventScroll:true})}
 function applyReadyTheme(id){
  const p=READY_THEMES.find(item=>item.id===id);if(!p)return;
- const colors={background:p.bg,iconColor:p.icon||p.a,calendarColor:p.calendar||p.a,indicatorColor:p.indicator,mode:['planner','campus','graphite'].includes(id)?'system':'custom'};
+ const colors={background:p.bg,iconColor:p.icon||p.a,calendarColor:p.calendar||p.a,indicatorColor:p.indicator,mode:['notice','planner','campus','graphite'].includes(id)?'system':'custom'};
  state.appearance=normalizeAppearance({...state.appearance,...colors,preset:id,paletteSaturation:100,indicatorSaturation:100});jsonSave('bash_appearance_v1',state.appearance);themeApply();
  const scroll=$('modalBody').scrollTop;renderAppearanceSettings();$('modalBody').scrollTop=scroll;document.querySelector(`[data-action="applyReadyTheme"][data-value="${id}"]`)?.focus({preventScroll:true});toast(readyText(4));
 }
 
-const APPEARANCE_DEFAULTS={preset:'planner',density:'comfortable',paletteSaturation:100,fontSize:100,background:'#f7f3ef',iconColor:'#5b3cce',calendarColor:'#5b3cce',indicatorSaturation:100,indicatorColor:'#e06938',mode:'system',motion:true,glass:false,shadows:true,backgroundEffect:'none',effectIntensity:60,effectSpeed:100,effectMotion:'auto'};
+const APPEARANCE_DEFAULTS={preset:'notice',density:'comfortable',paletteSaturation:100,fontSize:100,background:'#f5f0e4',iconColor:'#203eab',calendarColor:'#1a36c6',indicatorSaturation:100,indicatorColor:'#d07822',mode:'system',motion:true,glass:false,shadows:true,backgroundEffect:'none',effectIntensity:60,effectSpeed:100,effectMotion:'auto'};
 const deviceTheme=window.matchMedia?.('(prefers-color-scheme: dark)');
 function appearanceBackground(p=state.appearance){
  if(p.mode==='custom')return p.background;
  const dark=p.mode==='dark'||p.mode==='system'&&(deviceTheme?.matches??true);
+ if(p.preset==='notice')return dark?'#151926':'#f5f0e4';
  if(p.preset==='planner')return dark?'#1d1829':'#f7f3ef';
  if(p.preset==='campus')return dark?'#101a15':'#f1f4e9';
  return dark?'#171a1f':'#f3f4f6';
@@ -1738,7 +1717,7 @@ function normalizeAppearance(value){
  const color=(key)=>/^#[0-9a-f]{6}$/i.test(v[key]||'')?v[key].toLowerCase():APPEARANCE_DEFAULTS[key];
  const n=Number(v.fontSize),saturation=Number(v.indicatorSaturation),density=Number(v.effectIntensity),speed=Number(v.effectSpeed);
  const preset=READY_THEMES.some(p=>p.id===v.preset)?v.preset:!v.background?APPEARANCE_DEFAULTS.preset:'custom';
- const mode=['system','light','dark','custom'].includes(v.mode)?v.mode:!['#171a1f','#f1f4e9',APPEARANCE_DEFAULTS.background].includes(color('background'))?'custom':'system';
+ const mode=['system','light','dark','custom'].includes(v.mode)?v.mode:!['#171a1f','#f1f4e9','#f7f3ef',APPEARANCE_DEFAULTS.background].includes(color('background'))?'custom':'system';
  return {preset,density:['comfortable','compact'].includes(v.density)?v.density:'comfortable',paletteSaturation:Number.isFinite(Number(v.paletteSaturation))?Math.max(0,Math.min(150,Math.round(Number(v.paletteSaturation)/10)*10)):100,effectSpeed:Number.isFinite(speed)?Math.max(50,Math.min(150,Math.round(speed/10)*10)):100,effectMotion:['auto','animated','still'].includes(v.effectMotion)?v.effectMotion:'auto',backgroundEffect:['none','snow','wheat','aurora','waves','stars'].includes(v.backgroundEffect)?v.backgroundEffect:'none',effectIntensity:Number.isFinite(density)?Math.max(20,Math.min(100,Math.round(density/10)*10)):60,fontSize:Number.isFinite(n)?Math.max(100,Math.min(130,Math.round(n/5)*5)):100,indicatorSaturation:Number.isFinite(saturation)?Math.max(0,Math.min(200,Math.round(saturation/10)*10)):100,background:color('background'),iconColor:color('iconColor'),calendarColor:color('calendarColor'),indicatorColor:color('indicatorColor'),mode,...Object.fromEntries(['motion','glass','shadows'].map(key=>[key,typeof v[key]==='boolean'?v[key]:APPEARANCE_DEFAULTS[key]]))};
 }
 function rgbColor(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16))}
@@ -1762,16 +1741,16 @@ function applyAppearance(){
  const preset=READY_THEMES.find(item=>item.id===p.preset&&item.id!=='graphite');
  const campus=p.preset==='campus'&&p.mode!=='custom';
  const planner=p.preset==='planner'&&p.mode!=='custom';
- const surface=planner?(light?'#fffdfa':'#272136'):campus?(light?'#fafbf5':'#19271e'):p.preset==='amoled'?'#111111':safeSurface(.04);
- const surface2=planner?(light?'#f0e9fa':'#332948'):campus?(light?'#e7eddc':'#25372a'):safeSurface(.085);
- const baseAccent=planner?(light?'#5b3cce':'#b49afb'):campus?(light?'#365c3a':'#c6e78b'):preset?preset.a:light?'#365e8b':'#a8bdd8';
+ const notice=p.preset==='notice'&&p.mode!=='custom';
+ const surface=notice?(light?'#faf6eb':'#202638'):planner?(light?'#fffdfa':'#272136'):campus?(light?'#fafbf5':'#19271e'):p.preset==='amoled'?'#111111':safeSurface(.04);
+ const surface2=notice?(light?'#ede5d5':'#2a334b'):planner?(light?'#f0e9fa':'#332948'):campus?(light?'#e7eddc':'#25372a'):safeSurface(.085);
+ const baseAccent=notice?(light?'#1a36c6':'#94acff'):planner?(light?'#5b3cce':'#b49afb'):campus?(light?'#365c3a':'#c6e78b'):preset?preset.a:light?'#365e8b':'#a8bdd8';
  const accent=contrastColor(saturateIndicator(baseAccent,p.paletteSaturation),surface2,3);
  const calendarColor=saturateIndicator(p.calendarColor,p.paletteSaturation),iconBase=saturateIndicator(p.iconColor,p.paletteSaturation);
  const calendarSurface=mixColor(bg,calendarColor,light ? .12 : .16),calendarInk=contrastColor(ink,calendarSurface,4.5);
  const iconColor=contrastColor(iconBase,surface2,3),indicatorColor=indicatorForPalette(p.indicatorColor,iconColor,surface2,p.indicatorSaturation);
  const values={'--indicator-strength':String(.25+.75*p.indicatorSaturation/200),'--indicator-width':(3+3*p.indicatorSaturation/200)+'px','--indicator-color':indicatorColor,'--indicator-text':contrastColor(indicatorColor,surface,4.5),'--indicator-calendar':contrastColor(indicatorColor,calendarSurface,3),'--indicator-calendar-active':contrastColor(indicatorColor,calendarColor,3),'--calendar-bg':calendarSurface,'--calendar-text':calendarInk,'--calendar-border':contrastColor(mixColor(calendarColor,bg,.35),calendarSurface,1.5),'--calendar-active':calendarColor,'--calendar-active-text':contrastColor(light?'#15181d':'#f5f6f8',calendarColor,4.5),'--bg':bg,'--s':surface,'--s2':surface2,'--t':ink,'--m':contrastColor(mixColor(ink,bg,.27),surface2,4.5),'--l':mixColor(bg,toward,.22),'--a':accent,'--ao':colorContrast('#000000',accent)>colorContrast('#ffffff',accent)?'#000000':'#ffffff','--lec':contrastColor(preset?saturateIndicator(preset.lec||preset.a,p.paletteSaturation):light?'#365e8b':'#a8bdd8',surface2,3),'--prac':contrastColor(preset?saturateIndicator(preset.prac||preset.a,p.paletteSaturation):light?'#356d5e':'#a8c5ba',surface2,3),'--icon-color':iconColor,'--text-scale':String(p.fontSize/100)};
  for(const [key,value] of Object.entries(values))root.style.setProperty(key,value);
- root.style.setProperty('--hero-indicator',contrastColor(indicatorColor,'#432c97',3));
  root.style.colorScheme=light?'light':'dark';root.dataset.density=p.density;root.dataset.colorMode=p.mode;root.dataset.motion=p.motion?'on':'off';root.dataset.glass=p.glass?'on':'off';root.dataset.shadows=p.shadows?'on':'off';
  document.querySelector('meta[name="theme-color"]').content=bg;
  backgroundEffects.sync();
@@ -1779,7 +1758,7 @@ function applyAppearance(){
 function updateAppearance(key,value){
  if(!Object.hasOwn(APPEARANCE_DEFAULTS,key))return;
  const editsColor=['background','iconColor','calendarColor'].includes(key);
- const changesPreset=editsColor||key==='mode'&&!['planner','campus','graphite'].includes(state.appearance.preset);
+ const changesPreset=editsColor||key==='mode'&&!['notice','planner','campus','graphite'].includes(state.appearance.preset);
  state.appearance=normalizeAppearance({...state.appearance,[key]:value,...(changesPreset?{preset:'custom'}:{}),...(key==='background'?{mode:'custom'}:{})});jsonSave('bash_appearance_v1',state.appearance);themeApply();
  if(!state.appearance.motion)document.getAnimations?.().forEach(animation=>animation.cancel());
  syncAppearanceControls();
@@ -1862,8 +1841,9 @@ function publicationStatus(){
 const publicationStatusKey=()=>({file:'checkFile',offline:'checkOffline',checking:'checkChecking',new:'checkNew',ahead:'checkAhead',failed:'checkFailed',current:'checkCurrent',idle:'checkUnknown'})[publicationStatus()]||'checkUnknown';
 function renderFreshnessShortcut(){
  const button=$('dataInfo');if(!button)return;
- button.dataset.freshness=publicationStatus();button.setAttribute('aria-label',t('freshnessTitle')+' · '+t(publicationStatusKey()));
- button.innerHTML=`<span class="freshness-dot" aria-hidden="true"></span><span><strong>${esc(t('dataAsOf',{date:releaseDate()}))}</strong><small>${esc(t(publicationStatusKey()))}</small></span>${uiIcon('chevronRight')}`;
+ const date=t('dataAsOf',{date:releaseDate()});
+ button.dataset.freshness=publicationStatus();button.setAttribute('aria-label',date+' · '+t(publicationStatusKey()));
+ button.innerHTML=`<span class="freshness-dot" aria-hidden="true"></span><span><strong>${esc(date)}</strong><small>${esc(t(publicationStatusKey()))}</small></span>${uiIcon('chevronRight')}`;
  if(state.modal==='freshness')renderFreshness();
 }
 function renderFreshness(){
@@ -1948,7 +1928,7 @@ const backgroundEffects=(()=>{
   const isWheat=p.backgroundEffect==='wheat';
   return {canvas:element,ctx,width,height,key,preview,particles:Array.from({length:count},(_,i)=>({x:((i*.6180339+.17)%1)*width,y:((i*.381966+.31)%1)*height,size:isWheat?19+(i%7)*2:1.3+(i%5)*.45,speed:18+(i%9)*4,phase:i*2.39,rotation:i*.6,spin:((i%5)-2)*.08,crystal:i%4===0,opacity:.35+(i%6)*.08}))};
  }
- const protectedSelectors='.site-bar,.masthead,.workspace-foot,.update-banner,.quick-groups,.planner-board,.planner-rail,.footer,.jump-current';
+ const protectedSelectors='.site-bar,.masthead,.workspace-foot,.update-banner,.quick-groups,.planner-board,.current-panel,.load-details,.footer,.jump-current';
  function protectedAreas(scene){
   if(scene.mask)return scene.mask;
   const root=scene.preview?scene.canvas.closest('.theme-demo'):document,origin=scene.preview?scene.canvas.getBoundingClientRect():{left:0,top:0};
@@ -2084,7 +2064,6 @@ function renderFilterSummary(){
  $('rememberSubgroup').innerHTML=uiIcon('bookmark');
 }
 function renderUtilities(){
- $('supportButton').innerHTML=uiIcon('support');$('supportButton').setAttribute('aria-label',t('support'));
  $('quickToday').innerHTML=uiIcon('today')+`<span>${esc(t('today'))}</span>`;
  renderFreshnessShortcut();
  renderGroupButton();renderQuickGroups();renderFilterSummary();renderInstallButton();renderUpdateBanner();
